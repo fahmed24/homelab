@@ -1,0 +1,4 @@
+- hosts: loadbalancers
+  become: true
+  roles:
+    - haproxy_keepalived
