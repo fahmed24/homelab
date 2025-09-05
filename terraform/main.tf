@@ -1,0 +1,66 @@
+# =====================================================================
+# main.tf
+# Starter Terraform Project for Proxmox
+# =====================================================================
+
+terraform {
+  required_version = ">= 1.6.0"
+
+  required_providers {
+    proxmox = {
+      source  = "telmate/proxmox"
+      version = "3.0.2-rc04"
+    }
+  }
+
+  backend "local" {
+    path = "terraform.tfstate"
+  }
+}
+
+variable "pm_api_token_id" {
+  type = string
+}
+
+variable "pm_api_token_secret" {
+  type = string
+  sensitive = true
+}
+
+provider "proxmox" {
+  pm_api_url = "https://192.168.68.63:8006/api2/json"
+  pm_tls_insecure = true # By default Proxmox Virtual Environment uses self-signed certificates.
+  pm_api_token_id = var.pm_api_token_id
+  pm_api_token_secret = var.pm_api_token_secret
+}
+
+resource "proxmox_lxc" "bastion" {
+  target_node  = "proxmox"
+  hostname     = "BASTION"
+  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  password     = "Container"
+  unprivileged = true
+  
+  cores = 1
+  cpulimit = 50 # Uses 50% of 1 Core
+  memory = 128
+  swap = 128
+  onboot = true
+  start = true
+
+  ssh_public_keys = <<-EOT
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
+  EOT
+
+  // Terraform will crash without rootfs defined
+  rootfs {
+    storage = "local-lvm"
+    size    = "1G" # Size should be greater than 600MB for this template
+  }
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr1"
+    ip     = "dhcp"
+  }
+}
