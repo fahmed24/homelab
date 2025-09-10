@@ -1,0 +1,5 @@
+---
+ssh_keygen_path: "/home/ansible/.ssh/ansible_proxmox"
+ssh_keygen_type: rsa
+ssh_keygen_size: ed25519
+ssh_keygen_owner: ansible

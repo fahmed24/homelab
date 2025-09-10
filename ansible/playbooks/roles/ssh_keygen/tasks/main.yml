@@ -1,0 +1,15 @@
+---
+- name: Ensure SSH key pair exists
+  community.crypto.openssh_keypair:
+    path: "{{ ssh_keygen_path }}"
+    type: "{{ ssh_keygen_type }}"
+    size: "{{ ssh_keygen_size }}"
+    state: present
+    owner: "{{ ssh_keygen_owner }}"
+    group: "{{ ssh_keygen_owner }}"
+    mode: '0600'
+  register: ssh_keypair
+
+- name: Display public key
+  debug:
+    msg: "Generated public key: {{ ssh_keypair.public_key }}"
