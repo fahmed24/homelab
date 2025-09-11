@@ -7,10 +7,10 @@
     create_home: yes
 
 - name: Add SSH authorized key for ansible user
-  authorized_key:
+  ansible.posix.authorized_key:
     user: ansible
     state: present
-    key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/ansible_proxmox.pub') }}"
+    key: "{{ lookup('file', ansible_pubkey_path | expanduser) }}"
 
 - name: Allow passwordless sudo for ansible
   copy:

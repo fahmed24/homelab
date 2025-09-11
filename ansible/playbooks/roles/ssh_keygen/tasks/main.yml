@@ -3,7 +3,6 @@
   community.crypto.openssh_keypair:
     path: "{{ ssh_keygen_path }}"
     type: "{{ ssh_keygen_type }}"
-    size: "{{ ssh_keygen_size }}"
     state: present
     owner: "{{ ssh_keygen_owner }}"
     group: "{{ ssh_keygen_owner }}"

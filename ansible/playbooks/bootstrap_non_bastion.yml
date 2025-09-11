@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap Non-Bastion host with ansible user
-  hosts: bastion
+  hosts: targets
   become: yes
   roles:
     - bootstrap_user

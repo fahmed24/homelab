@@ -4,3 +4,4 @@
   become: yes
   roles:
     - bootstrap_user
+    - ssh_keygen
