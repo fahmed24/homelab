@@ -27,6 +27,11 @@ variable "pm_api_token_secret" {
   sensitive = true
 }
 
+variable "pm_root_password" {
+  type = string
+  sensitive = true
+}
+
 provider "proxmox" {
   pm_api_url = "https://192.168.68.63:8006/api2/json"
   pm_tls_insecure = true # By default Proxmox Virtual Environment uses self-signed certificates.
@@ -38,7 +43,7 @@ resource "proxmox_lxc" "bastion" {
   target_node  = "proxmox"
   hostname     = "BASTION"
   ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password     = "Container"
+  password     = var.pm_root_password
   unprivileged = true
   
   cores = 1     # Logical cores, e.g. 16 Threads of 8 Physical
