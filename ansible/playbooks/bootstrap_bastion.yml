@@ -5,3 +5,4 @@
   roles:
     - bootstrap_user
     - ssh_keygen
+    - firewall
