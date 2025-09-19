@@ -1,0 +1,2 @@
+ufw_allowed_ports:
+  - { port: 22, proto: tcp, from_ip: "192.168.1.2" }

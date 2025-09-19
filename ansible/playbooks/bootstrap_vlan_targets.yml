@@ -1,0 +1,7 @@
+---
+- name: Bootstrap Non-Bastion host with ansible user
+  hosts: vlan_targets
+  become: yes
+  roles:
+    - bootstrap_user
+    - firewall
