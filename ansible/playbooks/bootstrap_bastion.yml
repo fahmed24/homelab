@@ -4,5 +4,6 @@
   become: yes
   roles:
     - bootstrap_user
-    - ssh_keygen
     - firewall
+    # Removed because I don't need to gen ssh key here
+    #- ssh_keygen
