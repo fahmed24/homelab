@@ -93,7 +93,7 @@ resource "proxmox_lxc" "non_bastion" {
   target_node  = "proxmox"
   hostname     = "NONBASTION"
   ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password     = "Container"
+  password     = var.pm_root_password
   unprivileged = true
   
   cores = 1
@@ -117,5 +117,69 @@ resource "proxmox_lxc" "non_bastion" {
     name   = "eth0"
     bridge = "vmbr1"
     ip     = "dhcp"
+  }
+}
+
+resource "proxmox_lxc" "vlan_test" {
+  target_node  = "proxmox"
+  hostname     = "VLANTEST"
+  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  password     = var.pm_root_password
+  unprivileged = true
+  
+  cores = 1
+  cpulimit = 50 # Uses 50% of 1 Core
+  memory = 128
+  swap = 128
+  onboot = true
+  start = true
+
+  ssh_public_keys = <<-EOT
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
+  EOT
+
+  // Terraform will crash without rootfs defined
+  rootfs {
+    storage = "local-lvm"
+    size    = "1G" # Size should be greater than 600MB for this template
+  }
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr1"
+    ip     = "dhcp"
+    tag    = "100" #VLAN Tag
+  }
+}
+
+resource "proxmox_lxc" "vlan_test_two" {
+  target_node  = "proxmox2"
+  hostname     = "VLANTESTTWO"
+  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  password     = var.pm_root_password
+  unprivileged = true
+  
+  cores = 1
+  cpulimit = 50 # Uses 50% of 1 Core
+  memory = 128
+  swap = 128
+  onboot = true
+  start = true
+
+  ssh_public_keys = <<-EOT
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
+  EOT
+
+  // Terraform will crash without rootfs defined
+  rootfs {
+    storage = "local-lvm"
+    size    = "1G" # Size should be greater than 600MB for this template
+  }
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr1"
+    ip     = "dhcp"
+    tag    = "100" #VLAN Tag
   }
 }
