@@ -2,3 +2,4 @@ terraform/.terraform
 terraform/credentials.auto.tfvars
 terraform/.terraform.lock.hcl
 **/.DS_Store
+packer/credentials.pkrvars.hcl
