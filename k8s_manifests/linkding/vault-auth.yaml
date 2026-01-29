@@ -1,0 +1,23 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"secrets.hashicorp.com/v1beta1","kind":"VaultAuth","metadata":{"annotations":{},"name":"linkding-dynamic-auth","namespace":"linkding-app"},"spec":{"kubernetes":{"audiences":["vault"],"role":"linkding-role","serviceAccount":"linkding-app-sa"},"method":"kubernetes","mount":"kubernetes"}}
+  creationTimestamp: "2026-01-27T00:16:57Z"
+  finalizers:
+  - vaultauth.secrets.hashicorp.com/finalizer
+  generation: 1
+  name: linkding-dynamic-auth
+  namespace: linkding-app
+  resourceVersion: "8696245"
+  uid: cc2334b0-8d2a-438e-8ba4-65d19072796b
+spec:
+  kubernetes:
+    audiences:
+    - vault
+    role: linkding-role
+    serviceAccount: linkding-app-sa
+    tokenExpirationSeconds: 600
+  method: kubernetes
+  mount: kubernetes
