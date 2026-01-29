@@ -1,0 +1,20 @@
+---
+- name: Config HAProxy and keepalived
+  hosts: lbs
+  vars:
+    ansible_user: ansible
+  become: yes
+  roles:
+    - haproxy_keepalived
+    #- firewall
+
+  handlers:
+    - name: Restart haproxy
+      service:
+        name: haproxy
+        state: restarted
+
+    - name: Restart keepalived
+      service:
+        name: keepalived
+        state: restarted

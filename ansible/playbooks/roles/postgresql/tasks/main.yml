@@ -1,0 +1,92 @@
+---
+- name: Install PostgreSQL
+  apt:
+    name:
+      - postgresql
+      - python3-psycopg2 # Requried for Ansible postgresql module
+    state: present
+    update_cache: yes
+
+- name: Ensure services are enabled and running
+  service:
+    name: postgresql
+    state: started
+    enabled: true
+
+- name: Detect PostgreSQL version
+  shell: psql --version | grep -oP '\d+' | head -1
+  register: postgres_version_output
+  changed_when: false
+
+- name: Set PostgreSQL version fact
+  set_fact:
+    postgres_version: "{{ postgres_version_output.stdout }}"
+
+- name: Configure pg_hba.conf for remote connections
+  lineinfile:
+    path: /etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
+    line: "host all all 0.0.0.0/0 scram-sha-256"
+    backup: yes
+  notify: restart postgresql
+
+- name: Configure PostgreSQL to listen on all interfaces
+  lineinfile:
+    path: /etc/postgresql/{{ postgres_version }}/main/postgresql.conf
+    regexp: "^#?listen_addresses"
+    line: "listen_addresses = '*'"
+    backup: yes
+
+- name: Set password for postgres user
+  shell: sudo -u postgres psql -c "ALTER USER postgres PASSWORD '{{ postgres_password }}';"
+  no_log: true
+
+- name: Create PostgreSQL backup directory
+  file:
+    path: "{{ backup_dir }}"
+    state: directory
+    mode: '0700'
+    owner: postgres
+    group: postgres
+
+- name: Create backup script
+  copy:
+    content: |
+      #!/bin/bash
+      set -e
+      
+      BACKUP_DIR="{{ backup_dir }}"
+      TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+      RETENTION_DAYS={{ backup_retention_days }}
+      
+      echo "$(date): Starting PostgreSQL backup..."
+      
+      # Create dump
+      sudo -u postgres pg_dumpall > "$BACKUP_DIR/pg_dumpall_$TIMESTAMP.sql"
+      
+      # Compress
+      gzip "$BACKUP_DIR/pg_dumpall_$TIMESTAMP.sql"
+      
+      # Clean up old backups
+      find "$BACKUP_DIR" -name "pg_dumpall_*.sql.gz" -mtime +$RETENTION_DAYS -delete
+      
+      echo "$(date): Backup completed: pg_dumpall_$TIMESTAMP.sql.gz"
+    dest: /usr/local/bin/pg-backup.sh
+    mode: '0755'
+
+- name: Create cron job for hourly backups
+  cron:
+    name: "PostgreSQL Hourly Backup"
+    minute: "0"
+    hour: "*"
+    job: "/usr/local/bin/pg-backup.sh >> /var/log/pg-backup.log 2>&1"
+    user: root
+    state: present
+
+- name: Run initial backup
+  shell: /usr/local/bin/pg-backup.sh
+  register: initial_backup
+  changed_when: true
+
+- name: Display backup status
+  debug:
+    msg: "Initial backup completed. Backups stored in {{ backup_dir }}"
