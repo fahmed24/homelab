@@ -1,0 +1,9 @@
+config:
+  configFile: |
+    allowed_groups = "/admin"
+    reverse_proxy = "true"
+    provider = "keycloak-oidc"
+    oidc_issuer_url = "https://auth.fahmed.org/realms/master"
+    email_domains = "*"
+    code_challenge_method = "S256"
+  existingSecret: oauth2-proxy-secrets

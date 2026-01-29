@@ -1,0 +1,38 @@
+apiVersion: v1
+items:
+- apiVersion: secrets.hashicorp.com/v1beta1
+  kind: VaultAuth
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"secrets.hashicorp.com/v1beta1","kind":"VaultAuth","metadata":{"annotations":{},"name":"oauth2-proxy-vault-auth","namespace":"oauth2-proxy-app"},"spec":{"kubernetes":{"audiences":["vault"],"role":"oauth2-proxy-role","serviceAccount":"oauth2-proxy-sa"},"method":"kubernetes","mount":"kubernetes"}}
+    creationTimestamp: "2026-01-27T20:47:10Z"
+    finalizers:
+    - vaultauth.secrets.hashicorp.com/finalizer
+    generation: 1
+    name: oauth2-proxy-vault-auth
+    namespace: oauth2-proxy-app
+    resourceVersion: "8696234"
+    uid: ffb47d5b-3adc-4cda-b0e1-3456111b36d8
+  spec:
+    kubernetes:
+      audiences:
+      - vault
+      role: oauth2-proxy-role
+      serviceAccount: oauth2-proxy-sa
+      tokenExpirationSeconds: 600
+    method: kubernetes
+    mount: kubernetes
+  status:
+    conditions:
+    - lastTransitionTime: "2026-01-28T19:37:57Z"
+      message: VaultAuthHealthy
+      observedGeneration: 1
+      reason: Healthy
+      status: "True"
+      type: Healthy
+    specHash: ed02cbca9fb8961f50cc36c697c789fcb193cf8ef3a8f0849a0e693391cf1b92
+    valid: true
+kind: List
+metadata:
+  resourceVersion: ""
