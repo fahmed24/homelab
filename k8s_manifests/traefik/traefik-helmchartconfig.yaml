@@ -1,0 +1,35 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  annotations: {}
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    providers:
+      kubernetesCRD:
+        allowCrossNamespace: true
+
+    ports:
+      web:
+        forwardedHeaders:
+          trustedIPs:
+            - 10.0.0.0/8
+
+    certificatesResolvers:
+      cloudflare:
+        acme:
+          email: fahad24ahmed@gmail.com
+          storage: /data/acme.json
+          dnsChallenge:
+            provider: cloudflare
+
+    env:
+      - name: CF_DNS_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-token
+            key: api-token
+
+    persistence:
+      enabled: true
