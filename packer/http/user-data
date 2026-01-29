@@ -18,6 +18,7 @@ autoinstall:
     allow-pw: false
   user-data:
     disable_root: true
+    preserve_hostname: false
   packages:
     - qemu-guest-agent
   late-commands:

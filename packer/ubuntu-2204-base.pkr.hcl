@@ -61,6 +61,7 @@ variable "pm_api_token_secret" {
   sensitive = true
 }
 
+# Make sure to use this with an ISO file
 source "proxmox-iso" "ubuntu_2204" {
   username = "${var.pm_api_token_id}"
   token    = "${var.pm_api_token_secret}"
@@ -83,7 +84,7 @@ source "proxmox-iso" "ubuntu_2204" {
 
   network_adapters {
     bridge   = "vmbr1"
-    vlan_tag = "100"
+    vlan_tag = "100" # Doesn't need to be on VLAN
   }
 
   node            = "${var.proxmox_node}"
@@ -105,6 +106,8 @@ source "proxmox-iso" "ubuntu_2204" {
   template_description = "${var.template_description}"
   template_name        = "${var.template_name}"
   unmount_iso          = true
+  cloud_init = true
+  cloud_init_storage_pool = var.proxmox_storage_pool
 }
 
 build {
