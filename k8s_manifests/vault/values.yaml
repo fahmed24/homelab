@@ -1,0 +1,41 @@
+global:
+  tlsDisable: false
+injector:
+  enabled: true
+server:
+  extraEnvironmentVars:
+    VAULT_TLSCERT: /vault/tls/tls.crt
+    VAULT_TLSKEY: /vault/tls/tls.key
+  service:
+    enabled: true
+    port: 8200
+    targetPort: 8200
+    type: ClusterIP
+  standalone:
+    config: |
+      ui = true
+
+      listener "tcp" {
+        tls_disable     = 0
+        address         = "[::]:8200"
+        cluster_address = "[::]:8201"
+        tls_cert_file   = "/vault/tls/tls.crt"
+        tls_key_file    = "/vault/tls/tls.key"
+      }
+
+      storage "file" {
+        path = "/vault/data"
+      }
+    enabled: true
+  volumeMounts:
+  - mountPath: /vault/tls
+    name: vault-tls
+    readOnly: true
+  volumes:
+  - name: vault-tls
+    secret:
+      defaultMode: 256
+      secretName: vault-server-tls
+ui:
+  enabled: true
+  serviceType: ClusterIP

@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations: {}
+  name: vault-tls
+  namespace: my-vault
+spec:
+  commonName: vault.fahmed.org
+  dnsNames:
+    - vault.fahmed.org
+  duration: 2160h
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-cloudflare-prod
+  renewBefore: 720h
+  secretName: vault-server-tls
