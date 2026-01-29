@@ -1,0 +1,14 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations: {}
+  name: cert-manager-vault-auth
+  namespace: cert-manager
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: cloudflare-role
+    serviceAccount: cert-manager-sa
+  method: kubernetes
+  mount: kubernetes
