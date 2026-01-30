@@ -1,15 +1,9 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"traefik.io/v1alpha1","kind":"Middleware","metadata":{"annotations":{},"name":"auth-headers","namespace":"oauth2-proxy-app"},"spec":{"headers":{"browserXssFilter":true,"contentTypeNosniff":true,"forceSTSHeader":true,"frameDeny":true,"sslRedirect":true,"stsIncludeSubdomains":true,"stsPreload":true,"stsSeconds":315360000}}}
-  creationTimestamp: "2025-12-23T00:04:46Z"
-  generation: 1
+  annotations: {}
   name: auth-headers
   namespace: oauth2-proxy-app
-  resourceVersion: "2607153"
-  uid: db5744be-1c8b-4b78-8334-8ed373767d23
 spec:
   headers:
     browserXssFilter: true
@@ -24,15 +18,9 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"traefik.io/v1alpha1","kind":"Middleware","metadata":{"annotations":{},"name":"oauth-auth","namespace":"oauth2-proxy-app"},"spec":{"forwardAuth":{"address":"http://my-oauth2-proxy.oauth2-proxy-app.svc:80/oauth2/auth","trustForwardHeader":true}}}
-  creationTimestamp: "2025-12-23T00:04:46Z"
-  generation: 3
+  annotations: {}
   name: oauth-auth
   namespace: oauth2-proxy-app
-  resourceVersion: "2636165"
-  uid: 9b0a69fc-3149-4382-86e8-46c168d8ed3c
 spec:
   forwardAuth:
     address: http://my-oauth2-proxy.oauth2-proxy-app.svc:80/oauth2/auth
@@ -41,30 +29,24 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"traefik.io/v1alpha1","kind":"Middleware","metadata":{"annotations":{},"name":"oauth-errors","namespace":"oauth2-proxy-app"},"spec":{"errors":{"query":"/oauth2/sign_in?rd={url}","service":{"name":"my-oauth2-proxy","port":80},"status":["401-403"]}}}
-  creationTimestamp: "2025-12-23T00:04:46Z"                                                                                                           generation: 1
-  name: oauth-errors                                                                                                                                  namespace: oauth2-proxy-app
-  resourceVersion: "2607155"                                                                                                                          uid: d6451c42-b2b3-4fb1-b829-1887c5ee3053
-spec:                                                                                                                                                 errors:
-  query: /oauth2/sign_in?rd={url}
-  service:
-    name: my-oauth2-proxy
-    port: 80
-  status:
-  - 401-403
+  annotations: {}
+  name: oauth-errors
+  namespace: oauth2-proxy-app
+spec:
+  errors:
+    query: /oauth2/sign_in?rd={url}
+    service:
+      name: my-oauth2-proxy
+      port: 80
+    status:
+      - 401-403
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  annotations:                                                                                                                                          kubectl.kubernetes.io/last-applied-configuration: |                                                                                                   {"apiVersion":"traefik.io/v1alpha1","kind":"Middleware","metadata":{"annotations":{},"name":"public-oauth-auth","namespace":"oauth2-proxy-app"},"spec":{"forwardAuth":{"address":"http://public-oauth2-proxy.oauth2-proxy-app.svc:80/oauth2/auth","trustForwardHeader":true}}}
-  creationTimestamp: "2026-01-16T03:10:19Z"
-  generation: 1
+  annotations: {}
   name: public-oauth-auth
   namespace: oauth2-proxy-app
-  resourceVersion: "4489635"
-  uid: b465eb94-3596-4535-b041-551ad76e18c8
 spec:
   forwardAuth:
     address: http://public-oauth2-proxy.oauth2-proxy-app.svc:80/oauth2/auth
@@ -73,15 +55,9 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"traefik.io/v1alpha1","kind":"Middleware","metadata":{"annotations":{},"name":"public-oauth-errors","namespace":"oauth2-proxy-app"},"spec":{"errors":{"query":"/oauth2/sign_in?rd={url}","service":{"name":"public-oauth2-proxy","port":80},"status":["401-403"]}}}
-  creationTimestamp: "2026-01-16T03:10:19Z"
-  generation: 1
+  annotations: {}
   name: public-oauth-errors
   namespace: oauth2-proxy-app
-  resourceVersion: "4489636"
-  uid: 830f527a-43c5-46c1-bdb2-3d4be1c18e03
 spec:
   errors:
     query: /oauth2/sign_in?rd={url}
@@ -89,4 +65,4 @@ spec:
       name: public-oauth2-proxy
       port: 80
     status:
-    - 401-403
+      - 401-403
