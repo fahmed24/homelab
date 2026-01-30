@@ -1,0 +1,6 @@
+controller:
+  replicas: 1
+defaultVaultConnection:
+  address: https://vault.fahmed.org:8200
+  enabled: true
+  skipTLSVerify: false
