@@ -1,0 +1,67 @@
+alloy:
+  extraPorts:
+  - name: otlp-grpc
+    port: 4317
+    protocol: TCP
+    targetPort: 4317
+  - name: otlp-http
+    port: 4318
+    protocol: TCP
+    targetPort: 4318
+  configMap:
+    content: |
+      // Discover Kubernetes pods
+      discovery.kubernetes "pods" {
+        role = "pod"
+      }
+
+      // Read logs from discovered pods
+      loki.source.kubernetes "pods" {
+        targets    = discovery.kubernetes.pods.targets
+        forward_to = [loki.write.loki.receiver]
+      }
+
+      //
+      Send logs to Loki
+      loki.write "loki" {
+        endpoint {
+          url = "http://my-loki-gateway.loki-app.svc.cluster.local/loki/api/v1/push"
+          headers = {
+            "X-Scope-OrgId" = "loki",
+          }
+        }
+      }
+
+      // ============================================
+      //
+      TRACES - OTLP RECEIVER
+      // ============================================
+
+      otelcol.receiver.otlp
+      "otlp_receiver" {
+        grpc {
+          endpoint = "0.0.0.0:4317"
+        }
+        http {
+          endpoint = "0.0.0.0:4318"
+        }
+        output {
+          traces = [otelcol.exporter.otlp.tempo.input]
+        }
+      }
+
+      // ============================================
+      // TRACES - OTLP
+      EXPORTER TO TEMPO
+      // ============================================
+
+      otelcol.exporter.otlp
+      "tempo" {
+        client {
+          endpoint = "my-tempo.tempo-app.svc.cluster.local:4317"
+
+          tls {
+            insecure = true
+          }
+        }
+      }
