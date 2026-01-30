@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations: {}
+  name: keycloak-app-sa
+  namespace: keycloak-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations: {}
+  name: keycloak-dynamic-auth
+  namespace: keycloak-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: keycloak-role
+    serviceAccount: keycloak-app-sa
+  method: kubernetes
+  mount: kubernetes

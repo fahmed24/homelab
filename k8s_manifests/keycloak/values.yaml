@@ -1,0 +1,23 @@
+database:
+  existingSecret: keycloak-secrets
+  host: 192.168.200.2
+  name: keycloak
+  port: "5432"
+  secretKeys:
+    passwordKey: password
+    usernameKey: username
+  type: postgres
+keycloak:
+  production: true
+  proxyHeaders: xforwarded
+mariadb:
+  enabled: false
+postgres:
+  enabled: false
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
