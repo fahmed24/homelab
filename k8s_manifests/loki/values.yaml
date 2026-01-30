@@ -1,0 +1,33 @@
+global:
+  extraEnv:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: loki-secrets
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: loki-secrets
+loki:
+  schemaConfig:
+    configs:
+    - from: "2025-01-01"
+      index:
+        period: 24h
+        prefix: loki_index_
+      object_store: s3
+      schema: v13
+      store: tsdb
+  storage:
+    bucketNames:
+      admin: loki-admin
+      chunks: loki-chunks
+      ruler: loki-ruler
+    s3:
+      endpoint: my-minio.minio-app.svc.cluster.local:9000
+      insecure: true
+      region: us-east-1
+      s3ForcePathStyle: true
+    type: s3

@@ -1,0 +1,14 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations: {}
+  name: loki-vault-auth
+  namespace: loki-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: minio-role
+    serviceAccount: loki-sa
+  method: kubernetes
+  mount: kubernetes
