@@ -1,0 +1,4 @@
+auth:
+  existingSecret: minio-secrets
+  existingSecretPasswordKey: password
+  existingSecretUserKey: username

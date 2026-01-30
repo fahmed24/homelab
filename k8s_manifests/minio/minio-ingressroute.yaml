@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cloudflare-prod
+  name: minio
+  namespace: minio-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`minio-console.fahmed.org`)
+      services:
+        - name: my-minio
+          port: 9090
+    - kind: Rule
+      match: Host(`minio.fahmed.org`)
+      services:
+        - name: my-minio
+          port: 9000
