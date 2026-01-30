@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations: {}
+  name: loki-sa
+  namespace: loki-app
+---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
