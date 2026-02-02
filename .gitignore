@@ -1,4 +1,5 @@
 **/.terraform*
+**/terraform.tfstate*
 **credentials*
 **/.DS_Store
 **/vault-init-keys.json
