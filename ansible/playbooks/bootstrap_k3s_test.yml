@@ -1,0 +1,7 @@
+---
+- name: Bootstrap Non-Bastion host with ansible user
+  hosts: k3s_test
+  become: yes
+  roles:
+    - bootstrap_user
+    - qemu_guest_agent
