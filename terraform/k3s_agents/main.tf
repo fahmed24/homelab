@@ -50,6 +50,7 @@ module "k3s_agent_large_a1" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "200G"
   primary_storage_name    = "fast"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.8/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -68,6 +69,7 @@ module "k3s_agent_large_a2" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "200G"
   primary_storage_name    = "fast"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.9/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -86,6 +88,7 @@ module "k3s_agent_medium_a3" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "200G"
   primary_storage_name    = "local-zfs"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.10/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -104,6 +107,7 @@ module "k3s_agent_medium_a4" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "200G"
   primary_storage_name    = "local-zfs"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.11/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -122,6 +126,7 @@ module "k3s_agent_medium_b1" {
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "50G"
   primary_storage_name    = "local-lvm"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.12/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -140,6 +145,7 @@ module "k3s_agent_medium_b2" {
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "50G"
   primary_storage_name    = "local-lvm"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.13/24"
   gateway_ipv4            = "192.168.100.1"
 }
@@ -158,6 +164,7 @@ module "k3s_agent_medium_c1" {
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "50G"
   primary_storage_name    = "fast"
+  vlan_tag                = 100
   ipv4_with_cidr          = "192.168.100.14/24"
   gateway_ipv4            = "192.168.100.1"
 }
