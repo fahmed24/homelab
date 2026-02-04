@@ -1,6 +1,8 @@
 ---
 - name: Bootstrap Non-Bastion host with ansible user
-  hosts: k3s_test
+  hosts: 
+    - k3s_servers_test
+    - k3s_agents_test
   become: yes
   roles:
     - bootstrap_user
