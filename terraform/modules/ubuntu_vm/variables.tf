@@ -54,3 +54,18 @@ variable "gateway_ipv4" {
   description = "Gateway IPv4 address"
   type        = string
 }
+
+variable "username" {
+  type      = string
+  sensitive = true
+}
+
+variable "password" {
+  type      = string
+  sensitive = true
+}
+
+variable "pm_ssh_public_keys" {
+  type      = string
+  sensitive = true
+}

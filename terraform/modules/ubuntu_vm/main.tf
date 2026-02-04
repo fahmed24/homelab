@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
 
   # VM definition
   clone      = var.clone_template_name # Must exist as a base template
-  full_clone = true                         # Usually set to true
+  full_clone = true                    # Usually set to true
   onboot     = true
 
   cpu {
@@ -65,15 +65,16 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   }
 
   # cloud-init
-  ciuser     = "default"
-  cipassword = "Ultra$VM"
-  sshkeys    = <<-EOT
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
-  EOT
-  ipconfig0  = "ip=${var.ipv4_with_cidr},gw=${var.gateway_ipv4}"
+  #ciuser     = "default"
+  #cipassword = "Ultra$VM"
+  ciuser     = var.username
+  cipassword = var.password
+
+  sshkeys   = var.pm_ssh_public_keys
+  ipconfig0 = "ip=${var.ipv4_with_cidr},gw=${var.gateway_ipv4}"
   #ipconfig0 = "ip=dhcp"
 
-  # Requuired for console access via Proxmox GUI
+  # Required for console access via Proxmox GUI
   serial {
     id = 0
   }

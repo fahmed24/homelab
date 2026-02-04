@@ -50,6 +50,9 @@ module "k3s_server_a_test" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "40G"
   primary_storage_name    = "local-zfs"
+  username                = var.username
+  password                = var.password
+  pm_ssh_public_keys      = var.pm_ssh_public_keys
   vlan_tag                = 150
   ipv4_with_cidr          = "192.168.150.5/24"
   gateway_ipv4            = "192.168.150.1"
@@ -69,6 +72,9 @@ module "k3s_server_b_test" {
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "5G"
   primary_storage_name    = "local-lvm"
+  username                = var.username
+  password                = var.password
+  pm_ssh_public_keys      = var.pm_ssh_public_keys
   vlan_tag                = 150
   ipv4_with_cidr          = "192.168.150.6/24"
   gateway_ipv4            = "192.168.150.1"
@@ -88,6 +94,9 @@ module "k3s_server_c_test" {
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "5G"
   primary_storage_name    = "fast"
+  username                = var.username
+  password                = var.password
+  pm_ssh_public_keys      = var.pm_ssh_public_keys
   vlan_tag                = 150
   ipv4_with_cidr          = "192.168.150.7/24"
   gateway_ipv4            = "192.168.150.1"
@@ -107,6 +116,9 @@ module "k3s_agent_small_a1_test" {
   cloud_init_storage_name = "local-zfs"
   primary_storage_size    = "5G"
   primary_storage_name    = "fast"
+  username                = var.username
+  password                = var.password
+  pm_ssh_public_keys      = var.pm_ssh_public_keys
   vlan_tag                = 150
   ipv4_with_cidr          = "192.168.150.14/24"
   gateway_ipv4            = "192.168.150.1"

@@ -42,11 +42,11 @@ provider "proxmox" {
 
 resource "proxmox_lxc" "bastion" {
 
-  provider = proxmox
+  provider     = proxmox
   target_node  = "proxmox1"
   hostname     = "BASTION"
   ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password     = var.pm_root_password
+  password     = var.container_root_password
   unprivileged = true
 
   cores    = 1  # Logical cores, e.g. 16 Threads of 8 Physical
@@ -56,10 +56,7 @@ resource "proxmox_lxc" "bastion" {
   onboot   = true
   start    = true
 
-
-  ssh_public_keys = <<-EOT
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
-  EOT
+  ssh_public_keys = var.pm_ssh_public_keys
 
   // Terraform will crash without rootfs defined
   rootfs {
@@ -95,11 +92,11 @@ resource "proxmox_lxc" "bastion" {
 
 resource "proxmox_lxc" "ha_proxy_a" {
 
-  provider = proxmox
+  provider     = proxmox
   target_node  = "proxmox1"
   hostname     = "HAPROXY-A"
   ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password     = var.pm_root_password
+  password     = var.container_root_password
   unprivileged = true
 
   cores    = 1  # Logical cores, e.g. 16 Threads of 8 Physical
@@ -109,9 +106,7 @@ resource "proxmox_lxc" "ha_proxy_a" {
   onboot   = true
   start    = true
 
-  ssh_public_keys = <<-EOT
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
-  EOT
+  ssh_public_keys = var.pm_ssh_public_keys
 
   // Terraform will crash without rootfs defined
   rootfs {
@@ -152,7 +147,7 @@ resource "proxmox_lxc" "ha_proxy_b" {
   target_node  = "proxmox3"
   hostname     = "HAPROXY-B"
   ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-  password     = var.pm_root_password
+  password     = var.container_root_password
   unprivileged = true
 
   cores    = 1  # Logical cores, e.g. 16 Threads of 8 Physical
@@ -162,9 +157,7 @@ resource "proxmox_lxc" "ha_proxy_b" {
   onboot   = true
   start    = true
 
-  ssh_public_keys = <<-EOT
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
-  EOT
+  ssh_public_keys = var.pm_ssh_public_keys
 
   // Terraform will crash without rootfs defined
   rootfs {
