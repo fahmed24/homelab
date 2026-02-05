@@ -12,28 +12,17 @@ variable "pm_api_url" {
   sensitive = true
 }
 
-variable "pm_root_password" {
+variable "username" {
   type      = string
   sensitive = true
 }
 
-variable "pm_api_url2" {
+variable "password" {
   type      = string
   sensitive = true
 }
 
-variable "pm_api_token_secret2" {
+variable "pm_ssh_public_keys" {
   type      = string
   sensitive = true
 }
-
-variable "pm_api_url3" {
-  type      = string
-  sensitive = true
-}
-
-variable "pm_api_token_secret3" {
-  type      = string
-  sensitive = true
-}
-

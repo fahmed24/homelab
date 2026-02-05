@@ -34,6 +34,9 @@ module "postgresql" {
   cloud_init_storage_name = "fast"
   primary_storage_size    = "200G"
   primary_storage_name    = "fast"
+  username                = var.username
+  password                = var.password
+  pm_ssh_public_keys      = var.pm_ssh_public_keys
   vlan_tag                = 200
   ipv4_with_cidr          = "192.168.200.2/24"
   gateway_ipv4            = "192.168.200.1"
