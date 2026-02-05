@@ -8,6 +8,8 @@
 
 - name: Add SSH authorized key for ansible user
   ansible.posix.authorized_key:
+    # Removes all other authorized keys
+    exclusive: true
     user: ansible
     state: present
     key: "{{ lookup('file', ansible_pubkey_path | expanduser) }}"
