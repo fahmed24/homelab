@@ -13,12 +13,18 @@ spec:
     helm:
       valueFiles:
       - $values/k8s_manifests/linkding/values.yaml
-
   - repoURL: https://github.com/fahmed24/homelab.git
     targetRevision: dev
     path: k8s_manifests/linkding
     ref: values
-
   destination:
     server: https://kubernetes.default.svc
     namespace: linkding-app
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  ignoreDifferences:
+  - group: "*"
+    kind: "*"
+    jqPathExpressions:
+    - '.metadata.annotations["argocd.argoproj.io/tracking-id"]'
