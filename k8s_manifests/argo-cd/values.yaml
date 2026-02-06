@@ -1,0 +1,6 @@
+global:
+  domain: argocd.fahmed.org
+configs:
+  params:
+    # Required for TLS termination at ingress
+    server.insecure: true
