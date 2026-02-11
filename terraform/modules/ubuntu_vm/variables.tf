@@ -9,6 +9,24 @@ variable "vm_name" {
   type        = string
 }
 
+variable "bios" {
+  description = "The BIOS of the VM"
+  type        = string
+  default     = "seabios"
+}
+
+variable "vm_state" {
+  description = "The state of the VM upon creation"
+  type        = string
+  default     = "running"
+}
+
+variable "efi_type" {
+  description = "The Efi type for secure boot"
+  type        = string
+  default     = "4m"
+}
+
 variable "clone_template_name" {
   description = "Name of the template to clone from"
   type        = string

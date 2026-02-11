@@ -124,6 +124,8 @@ module "k3s_agent_medium_b1" {
   gateway_ipv4            = "192.168.100.1"
 }
 
+# GPU Passthrough 
+# Make sure to add PCIe Device before starting
 module "k3s_agent_medium_b2" {
   source = "../modules/ubuntu_vm"
 
@@ -133,10 +135,13 @@ module "k3s_agent_medium_b2" {
 
   target_proxmox_node     = "proxmox2"
   vm_name                 = "K3S-AGENT-MB2"
-  cpu_cores               = 2
+  clone_template_name     = "UBUNTU-2204-CLOUD-TEMPLATE-GPU-SB" # Created with golden_template_gpu.sh
+  bios                    = "ovmf"
+  vm_state                = "stopped"
+  cpu_cores               = 4
   memory                  = 4096
   cloud_init_storage_name = "local-lvm"
-  primary_storage_size    = "50G"
+  primary_storage_size    = "100G"
   primary_storage_name    = "local-lvm"
   username                = var.username
   password                = var.password

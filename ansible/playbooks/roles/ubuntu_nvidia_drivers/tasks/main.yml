@@ -1,0 +1,11 @@
+---
+- name: Install Ubuntu Drivers Commmon
+  apt:
+    name:
+      - ubuntu-drivers-common
+    state: present
+    update_cache: yes
+
+- name: Install Ideal Nvidia Drivers
+  shell: ubuntu-drivers install
+

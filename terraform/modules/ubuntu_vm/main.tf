@@ -23,13 +23,14 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   clone      = var.clone_template_name # Must exist as a base template
   full_clone = true                    # Usually set to true
   onboot     = true
+  bios       = var.bios
+  vm_state   = var.vm_state
 
   cpu {
     cores   = var.cpu_cores
     sockets = 1
     type    = "host"
   }
-
   memory  = var.memory
   scsihw  = "virtio-scsi-single"
   boot    = "order=scsi0;net0"
@@ -75,7 +76,9 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   #ipconfig0 = "ip=dhcp"
 
   # Required for console access via Proxmox GUI
+  /*
   serial {
     id = 0
   }
+  */
 }
