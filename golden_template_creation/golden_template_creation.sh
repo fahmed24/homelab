@@ -1,9 +1,11 @@
+#!/bin/bash
+
 # Different ID per Proxmox Nodes: 9000 and 9001
 VMID=9001
 VMNAME="ubuntu-2204-cloud-template"
 STORAGE="local-lvm"
-# Using a Ubuntu Cloud Image KVM ready from Canonical
-IMG="jammy-server-cloudimg-amd64-disk-kvm.img"
+# Using a Ubuntu Cloud Image ready from Canonical
+IMG="jammy-server-cloudimg-amd64.img"
 
 # Create empty VM
 # Creating on Internal LAN and using required virtio-scsi-pci drivers (ubuntu requirement)
@@ -18,7 +20,6 @@ qm set $VMID --ide2 ${STORAGE}:cloudinit
 
 # Boot + console
 qm set $VMID --boot order=scsi0
-qm set $VMID --serial0 socket --vga serial0
 
 # Convert to template
 qm template $VMID
