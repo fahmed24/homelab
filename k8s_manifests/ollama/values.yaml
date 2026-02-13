@@ -1,0 +1,8 @@
+ollama:
+  gpu:
+    enabled: true
+persistentVolume:
+  enabled: true
+extraEnv:
+  - name: OLLAMA_KEEP_ALIVE
+    value: "24h"
