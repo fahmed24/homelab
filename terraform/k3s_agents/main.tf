@@ -139,7 +139,7 @@ module "k3s_agent_medium_b2" {
   bios                    = "ovmf"
   vm_state                = "stopped"
   cpu_cores               = 4
-  memory                  = 4096
+  memory                  = 8192
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "100G"
   primary_storage_name    = "local-lvm"
