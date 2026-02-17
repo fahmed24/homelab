@@ -5,3 +5,7 @@ toolkit:
   env:
   - name: CONTAINERD_SOCKET
     value: /run/k3s/containerd/containerd.sock
+devicePlugin:
+  config:
+    name: time-slicing-config-all
+    default: any
