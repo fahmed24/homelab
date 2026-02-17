@@ -11,8 +11,3 @@ variable "pm_api_url" {
   type      = string
   sensitive = true
 }
-
-variable "pm_root_password" {
-  type      = string
-  sensitive = true
-}
