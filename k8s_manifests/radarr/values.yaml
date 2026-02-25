@@ -1,13 +1,11 @@
 env:
   TZ: America/Los_Angeles
 persistence:
+  config:
+    enabled: true
   # Chart Values Ref:
   # https://github.com/bjw-s-labs/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml
   downloads:
     enabled: true
     mountPath: /cluster-storage
-    accessMode: ReadWriteMany
-    size: 230Gi
-    volumeName: cluster-storage-pv-root # An existing PV
-    storageClass: "-" # Blocks default StorageClass provisioner
-    type: pvc
+    existingClaim: cluster-storage-pvc-root
