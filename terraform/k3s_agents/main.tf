@@ -141,7 +141,7 @@ module "k3s_agent_medium_b2" {
   cpu_cores               = 4
   memory                  = 8192
   cloud_init_storage_name = "local-lvm"
-  primary_storage_size    = "100G"
+  primary_storage_size    = "60G"
   primary_storage_name    = "local-lvm"
   username                = var.username
   password                = var.password
