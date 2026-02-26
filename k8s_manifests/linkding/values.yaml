@@ -14,6 +14,7 @@ common:
           key: oidc-client-secret
           envName: OIDC_RP_CLIENT_SECRET
     nonSecret:
+      TZ: America/Los_Angeles
       LD_DB_DATABASE: linkding
       LD_DB_ENGINE: postgres
       LD_DB_HOST: 192.168.200.2

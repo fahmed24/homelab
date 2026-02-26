@@ -21,8 +21,17 @@ spec:
     server: https://kubernetes.default.svc
     namespace: linkding-app
   syncPolicy:
+    automated:
+      prune: true    # Delete resources no longer in git
+      selfHeal: true # Auto-sync if cluster state drifts from git
     syncOptions:
       - CreateNamespace=true
+    retry:
+      limit: 5          # Maximum number of sync attempts before giving up
+      backoff:
+        duration: 5s    # Wait 5 seconds before first retry
+        factor: 2       # Double the wait time after each retry (5s, 10s, 20s, 40s, 80s)
+        maxDuration: 3m # Cap the wait time at 3 minutes between retries
   ignoreDifferences:
   - group: "*"
     kind: "*"

@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: linkding-certificate
+  namespace: linkding-app
+spec:
+  commonName: linkding.fahmed.org
+  dnsNames:
+    - linkding.fahmed.org
+  duration: 2160h
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-cloudflare-prod
+  renewBefore: 720h
+  secretName: linkding-tls

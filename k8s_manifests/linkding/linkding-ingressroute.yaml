@@ -1,8 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-cloudflare-prod
+  annotations: {}
   name: linkding
   namespace: linkding-app
 spec:
@@ -15,3 +14,5 @@ spec:
       services:
         - name: linkding
           port: 9090
+  tls:
+    secretName: linkding-tls
