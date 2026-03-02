@@ -23,8 +23,7 @@ alloy:
         forward_to = [loki.write.loki.receiver]
       }
 
-      //
-      Send logs to Loki
+      // Send logs to Loki
       loki.write "loki" {
         endpoint {
           url = "http://my-loki-gateway.loki-app.svc.cluster.local/loki/api/v1/push"
@@ -35,12 +34,9 @@ alloy:
       }
 
       // ============================================
-      //
-      TRACES - OTLP RECEIVER
+      // TRACES - OTLP RECEIVER
       // ============================================
-
-      otelcol.receiver.otlp
-      "otlp_receiver" {
+      otelcol.receiver.otlp "otlp_receiver" {
         grpc {
           endpoint = "0.0.0.0:4317"
         }
@@ -53,15 +49,11 @@ alloy:
       }
 
       // ============================================
-      // TRACES - OTLP
-      EXPORTER TO TEMPO
+      // TRACES - OTLP EXPORTER TO TEMPO
       // ============================================
-
-      otelcol.exporter.otlp
-      "tempo" {
+      otelcol.exporter.otlp "tempo" {
         client {
           endpoint = "my-tempo.tempo-app.svc.cluster.local:4317"
-
           tls {
             insecure = true
           }

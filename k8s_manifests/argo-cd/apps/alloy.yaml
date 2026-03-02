@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: alloy-app
-  namespace: alloy-app
+  namespace: argo-cd-app
 spec:
   project: default
   sources:
