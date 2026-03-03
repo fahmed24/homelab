@@ -1,2 +1,3 @@
 server:
-  image: v3.10.0
+  image:
+    tag: v3.10.0
