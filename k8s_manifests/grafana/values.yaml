@@ -1,2 +1,4 @@
+image:
+  tag: 12.4.0
 persistence:
   enabled: true
