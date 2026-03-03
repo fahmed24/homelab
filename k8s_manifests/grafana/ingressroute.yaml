@@ -11,7 +11,7 @@ spec:
     - kind: Rule
       match: Host(`grafana.fahmed.org`)
       services:
-        - name: my-grafana
+        - name: grafana-app
           port: 80
   tls:
     secretName: grafana-tls
