@@ -1,0 +1,2 @@
+server:
+  image: v3.10.0
