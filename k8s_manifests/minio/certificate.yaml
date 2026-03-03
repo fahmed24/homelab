@@ -9,6 +9,7 @@ spec:
   commonName: minio.fahmed.org
   dnsNames:
     - minio.fahmed.org
+    - minio-console.fahmed.org
   duration: 2160h
   issuerRef:
     kind: ClusterIssuer
