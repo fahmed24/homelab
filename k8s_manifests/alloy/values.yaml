@@ -26,7 +26,7 @@ alloy:
       // Send logs to Loki
       loki.write "loki" {
         endpoint {
-          url = "http://my-loki-gateway.loki-app.svc.cluster.local/loki/api/v1/push"
+          url = "http://loki-app-gateway.loki-app.svc.cluster.local/loki/api/v1/push"
           headers = {
             "X-Scope-OrgId" = "loki",
           }
@@ -53,7 +53,7 @@ alloy:
       // ============================================
       otelcol.exporter.otlp "tempo" {
         client {
-          endpoint = "my-tempo.tempo-app.svc.cluster.local:4317"
+          endpoint = "tempo-app.tempo-app.svc.cluster.local:4317"
           tls {
             insecure = true
           }
