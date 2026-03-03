@@ -9,7 +9,8 @@ metadata:
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
-  annotations: {}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
   name: minio-vault-auth
   namespace: minio-app
 spec:
