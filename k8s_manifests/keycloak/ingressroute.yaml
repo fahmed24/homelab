@@ -11,7 +11,7 @@ spec:
     - kind: Rule
       match: Host(`auth.fahmed.org`)
       services:
-        - name: keycloak-app
+        - name: keycloak
           port: 8080
   tls:
     secretName: keycloak-tls
