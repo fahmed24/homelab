@@ -15,7 +15,7 @@ spec:
         - name: auth-headers
           namespace: oauth2-proxy-app
       services:
-        - name: my-oauth2-proxy
+        - name: oauth2-proxy
           port: 80
   tls:
     secretName: oauth2-tls
