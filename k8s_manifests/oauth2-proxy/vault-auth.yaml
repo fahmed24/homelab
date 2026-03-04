@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  annotations: {}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
   name: oauth2-proxy-sa
   namespace: oauth2-proxy-app
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
-  annotations: {}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
   name: oauth2-proxy-vault-auth
   namespace: oauth2-proxy-app
 spec:
