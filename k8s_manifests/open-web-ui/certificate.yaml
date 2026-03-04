@@ -5,9 +5,9 @@ metadata:
   name: owu-certificate
   namespace: owu-app
 spec:
-  commonName: owu.fahmed.org
+  commonName: ai.fahmed.org
   dnsNames:
-    - owu.fahmed.org
+    - ai.fahmed.org
   duration: 2160h
   issuerRef:
     kind: ClusterIssuer

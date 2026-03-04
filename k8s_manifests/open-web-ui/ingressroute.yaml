@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`owu.fahmed.org`)
+      match: Host(`ai.fahmed.org`)
       services:
         - name: open-webui
           port: 80
