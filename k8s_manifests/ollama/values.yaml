@@ -1,8 +1,14 @@
+image:
+  tag: 0.17.5
 ollama:
   gpu:
     enabled: true
+  models:
+    pull:
+      - gemma3
+      - qwen2.5-coder:14b
 persistentVolume:
   enabled: true
 extraEnv:
   - name: OLLAMA_KEEP_ALIVE
-    value: "24h"
+    value: "6h"
