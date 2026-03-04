@@ -16,20 +16,5 @@ spec:
           trustedIPs:
             - 10.0.0.0/8
 
-    certificatesResolvers:
-      cloudflare:
-        acme:
-          email: fahad24ahmed@gmail.com
-          storage: /data/acme.json
-          dnsChallenge:
-            provider: cloudflare
-
-    env:
-      - name: CF_DNS_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-token
-            key: api-token
-
     persistence:
       enabled: true
