@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: time-slicing-config-all
   namespace: gpu-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 data:
   any: |-
     version: v1
