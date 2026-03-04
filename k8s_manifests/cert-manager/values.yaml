@@ -1,2 +1,4 @@
+image:
+  tag: v1.19.4
 crds:
   enabled: true
