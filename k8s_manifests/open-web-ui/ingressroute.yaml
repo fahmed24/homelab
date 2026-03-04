@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`ai.fahmed.org`)
       services:
-        - name: open-webui
+        - name: open-web-ui-open-webui
           port: 80
   tls:
     secretName: owu-tls
