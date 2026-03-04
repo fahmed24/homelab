@@ -8,8 +8,8 @@ spec:
   project: default
   sources:
   - repoURL: 'https://helm.ngc.nvidia.com/nvidia'
-    chart: nvidia
-    targetRevision: 25.10.1
+    chart: gpu-operator
+    targetRevision: v25.10.1
     helm:
       valueFiles:
       - $values/k8s_manifests/nvidia-gpu-operator/values.yaml
@@ -19,7 +19,7 @@ spec:
     ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: nvidia-gpu-operator
+    namespace: gpu-operator
   syncPolicy:
     automated:
       prune: true    # Delete resources no longer in git
