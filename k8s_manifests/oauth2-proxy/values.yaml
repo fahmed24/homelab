@@ -1,5 +1,5 @@
 image:
-  tag: '7.14.2'
+  tag: 'v7.14.3'
 config:
   configFile: |
     allowed_groups = "/admin"
