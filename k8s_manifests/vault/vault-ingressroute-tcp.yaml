@@ -3,7 +3,7 @@ kind: IngressRouteTCP
 metadata:
   annotations: {}
   name: vault-ingress-tcp
-  namespace: my-vault
+  namespace: vault-app
 spec:
   entryPoints:
     - websecure

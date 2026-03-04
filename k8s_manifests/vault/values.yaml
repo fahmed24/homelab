@@ -1,8 +1,13 @@
 global:
   tlsDisable: false
 injector:
-  enabled: true
+  enabled: false
 server:
+  image:
+    tag: '1.21.2'
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
   extraEnvironmentVars:
     VAULT_TLSCERT: /vault/tls/tls.crt
     VAULT_TLSKEY: /vault/tls/tls.key
