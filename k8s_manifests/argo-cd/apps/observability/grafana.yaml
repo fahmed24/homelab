@@ -37,3 +37,9 @@ spec:
     kind: "*"
     jqPathExpressions:
     - '.metadata.annotations["argocd.argoproj.io/tracking-id"]'
+  - group: ""
+    kind: Secret
+    name: grafana-app
+    namespace: grafana-app
+    jqPathExpressions:
+    - '.data'
