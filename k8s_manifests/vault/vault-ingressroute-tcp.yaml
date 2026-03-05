@@ -10,7 +10,7 @@ spec:
   routes:
     - match: HostSNI(`vault.fahmed.org`)
       services:
-        - name: my-vault
+        - name: vault
           port: 8200
   tls:
     passthrough: true
