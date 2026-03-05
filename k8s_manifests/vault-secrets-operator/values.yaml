@@ -1,4 +1,7 @@
 controller:
+  manager:
+    image:
+      tag: 1.3.0
   replicas: 1
 defaultVaultConnection:
   address: https://vault.fahmed.org:8200
