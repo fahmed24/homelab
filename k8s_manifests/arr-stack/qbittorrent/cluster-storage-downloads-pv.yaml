@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: cluster-storage-pv-root
+  name: cluster-storage-downloads-pv
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   capacity:
     storage: 230Gi
@@ -9,5 +11,5 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.68.57
-    path: /export/cluster-storage
+    path: /export/cluster-storage/qbittorrent-downloads
 

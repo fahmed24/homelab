@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`radarr.fahmed.org`)
       services:
-        - name: my-radarr
+        - name: radarr
           port: 7878
   tls:
     secretName: radarr-tls

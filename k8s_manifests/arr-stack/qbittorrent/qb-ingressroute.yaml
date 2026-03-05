@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`qb.fahmed.org`)
       services:
-        - name: my-qbittorrent-vpn
+        - name: qbittorrent-vpn
           port: 8080
   tls:
     secretName: qb-tls

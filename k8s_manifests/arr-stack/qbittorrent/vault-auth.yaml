@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: qbittorrent-vpn-sa
+  namespace: qbittorrent-vpn-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: qbittorrent-vpn-vault-auth
+  namespace: qbittorrent-vpn-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: qbittorrent-vpn-role
+    serviceAccount: qbittorrent-vpn-sa
+  method: kubernetes
+  mount: kubernetes

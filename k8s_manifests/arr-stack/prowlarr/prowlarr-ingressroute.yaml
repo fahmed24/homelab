@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`prowlarr.fahmed.org`)
       services:
-        - name: my-prowlarr
+        - name: prowlarr
           port: 9696
   tls:
     secretName: prowlarr-tls

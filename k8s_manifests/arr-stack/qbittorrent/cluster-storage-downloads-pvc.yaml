@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: cluster-storage-pvc-root
-  namespace: radarr-app
+  name: cluster-storage-downloads-pvc
+  namespace: qbittorrent-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 230Gi
-  volumeName: cluster-storage-pv-root
+  volumeName: cluster-storage-downloads-pv
   storageClassName: ""

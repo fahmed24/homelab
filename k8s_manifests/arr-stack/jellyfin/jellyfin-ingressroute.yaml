@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`jellyfin.fahmed.org`)
       services:
-        - name: my-jellyfin
+        - name: jellyfin
           port: 8096
   tls:
     secretName: jellyfin-tls
