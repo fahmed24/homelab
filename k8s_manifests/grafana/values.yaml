@@ -1,4 +1,6 @@
 image:
   tag: 12.4.0
+initChownData:
+  enabled: false
 persistence:
   enabled: true
