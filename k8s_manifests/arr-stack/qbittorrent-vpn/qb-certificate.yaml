@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
   name: qb-certificate
-  namespace: qbittorrent-app
+  namespace: qbittorrent-vpn-app
 spec:
   commonName: qb.fahmed.org
   dnsNames:

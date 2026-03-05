@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: cluster-storage-downloads-pvc
-  namespace: qbittorrent-app
+  namespace: qbittorrent-vpn-app
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
 spec:
