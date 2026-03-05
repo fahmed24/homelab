@@ -7,6 +7,6 @@ metadata:
 data:
   rewrite.override: |
     rewrite name auth.fahmed.org traefik.kube-system.svc.cluster.local
-    rewrite name vault.fahmed.org my-vault.my-vault.svc.cluster.local
+    rewrite name vault.fahmed.org vault.vault-app.svc.cluster.local
     #rewrite name loki.fahmed.org my-loki-gateway.loki-app.svc.cluster.local
     #rewrite name oauth2.fahmed.org traefik.kube-system.svc.cluster.local
