@@ -1,0 +1,13 @@
+image:
+  tag: 4.0.16.2946
+env:
+  TZ: America/Los_Angeles
+persistence:
+  config:
+    enabled: true
+  # Chart Values Ref:
+  # https://github.com/bjw-s-labs/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml
+  downloads:
+    enabled: true
+    mountPath: /cluster-storage
+    existingClaim: cluster-storage-pvc-root-sonarr
