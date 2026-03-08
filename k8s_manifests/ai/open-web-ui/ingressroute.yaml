@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: owu-ingressroute
+  namespace: owu-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`ai.fahmed.org`)
+      services:
+        - name: open-web-ui-open-webui
+          port: 80
+  tls:
+    secretName: owu-tls
+
