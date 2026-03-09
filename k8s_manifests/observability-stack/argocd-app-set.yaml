@@ -37,10 +37,10 @@ spec:
         targetRevision: '{{chartRevision}}'
         helm:
           valueFiles:
-          - '$values/k8s_manifests/observability/{{app}}/values.yaml'
+          - '$values/k8s_manifests/observability-stack/{{app}}/values.yaml'
       - repoURL: https://github.com/fahmed24/homelab.git
         targetRevision: dev
-        path: 'k8s_manifests/observability/{{app}}'
+        path: 'k8s_manifests/observability-stack/{{app}}'
         ref: values
       destination:
         server: https://kubernetes.default.svc
