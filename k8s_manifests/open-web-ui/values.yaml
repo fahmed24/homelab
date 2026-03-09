@@ -1,7 +1,0 @@
-image:
-  tag: 0.8.8
-namespaceOverride: owu-app
-ollama:
-  enabled: false
-ollamaUrls:
-  - http://ollama.ollama-app.svc.cluster.local:11434
