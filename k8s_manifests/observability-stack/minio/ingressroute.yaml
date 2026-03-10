@@ -11,12 +11,12 @@ spec:
     - kind: Rule
       match: Host(`minio-console.fahmed.org`)
       services:
-        - name: minio-app
+        - name: minio
           port: 9090
     - kind: Rule
       match: Host(`minio.fahmed.org`)
       services:
-        - name: minio-app
+        - name: minio
           port: 9000
   tls:
     secretName: minio-tls
