@@ -12,10 +12,10 @@ spec:
     targetRevision: 1.1.20
     helm:
       valueFiles:
-      - $values/k8s_manifests/linkding/values.yaml
+      - $values/k8s_manifests/misc/linkding/values.yaml
   - repoURL: https://github.com/fahmed24/homelab.git
     targetRevision: dev
-    path: k8s_manifests/linkding
+    path: k8s_manifests/misc/linkding
     ref: values
   destination:
     server: https://kubernetes.default.svc
