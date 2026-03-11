@@ -16,9 +16,8 @@ persistence:
 grafana.ini:
   auth.generic_oauth:
     enabled: true
-    use_pkce: true
     name: Keycloak-OAuth
-    allow_sign_up: false
+    allow_sign_up: true
     client_id: grafana
     email_attribute_path: email
     login_attribute_path: username
