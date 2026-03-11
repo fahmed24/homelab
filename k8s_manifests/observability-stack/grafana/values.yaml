@@ -17,6 +17,15 @@ persistence:
 grafana.ini:
   auth.generic_oauth:
     enabled: true
+    name: Keycloak-OAuth
+    allow_sign_up: false
+    client_id: grafana
+    email_attribute_path: email
+    login_attribute_path: username
+    name_attribute_path: full_name
+    auth_url: https://auth.fahmed.org/realms/master/protocol/openid-connect/auth
+    token_url: https://auth.fahmed.org/realms/master/protocol/openid-connect/token
+    api_url: https://auth.fahmed.org/realms/master/protocol/openid-connect/userinfo
   paths:
     data: /var/lib/grafana/
     logs: /var/log/grafana
