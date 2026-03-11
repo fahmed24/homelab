@@ -1,5 +1,9 @@
 image:
   tag: 12.4.0
+admin:
+  existingSecret: grafana-secrets
+  userKey: user
+  passwordKey: password
 initChownData:
   enabled: false
 persistence:
