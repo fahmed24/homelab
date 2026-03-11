@@ -5,6 +5,6 @@ admin:
   userKey: user
   passwordKey: password
 initChownData:
-  enabled: false
+  enabled: true
 persistence:
   enabled: true
