@@ -26,7 +26,7 @@ grafana.ini:
     auth_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/auth"
     token_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/token"
     api_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/userinfo"
-    scopes: "openid email profile offline_acces roles"
+    scopes: "openid email profile offline_access roles"
     role_attribute_path: "contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
   paths:
     data: /var/lib/grafana/
