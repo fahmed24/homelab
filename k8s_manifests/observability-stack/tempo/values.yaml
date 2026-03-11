@@ -13,7 +13,7 @@ tempo:
         name: tempo-secrets
   metricsGenerator:
     enabled: true
-    remoteWriteUrl: http://prometheus-app-server.prometheus-app.svc.cluster.local
+    remoteWriteUrl: http://prometheus-server.prometheus-app.svc.cluster.local
   overrides:
     defaults:
       metrics_generator:
@@ -26,7 +26,7 @@ tempo:
       backend: s3
       s3:
         bucket: tempo-storage
-        endpoint: minio-app.minio-app.svc.cluster.local:9000
+        endpoint: minio.minio-app.svc.cluster.local:9000
         insecure: true
         region: us-east-1
 persistence:

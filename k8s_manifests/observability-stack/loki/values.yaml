@@ -30,7 +30,7 @@ loki:
       chunks: loki-chunks
       ruler: loki-ruler
     s3:
-      endpoint: minio-app.minio-app.svc.cluster.local:9000
+      endpoint: minio.minio-app.svc.cluster.local:9000
       insecure: true
       region: us-east-1
       s3ForcePathStyle: true
