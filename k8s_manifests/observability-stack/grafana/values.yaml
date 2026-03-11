@@ -1,11 +1,10 @@
 image:
   tag: 12.4.0
-env:
+envValueFrom:
   GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-    valueFrom:
-      secretKeyRef:
-        name: grafana-secrets
-        key: client-secret
+    secretKeyRef:
+      name: grafana-secrets
+      key: client-secret
 admin:
   existingSecret: grafana-secrets
   userKey: user
