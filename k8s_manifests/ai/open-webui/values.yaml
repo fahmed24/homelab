@@ -20,5 +20,5 @@ sso:
     allowedRoles: "open-webui-user"
     adminRoles: "open-webui-admin"
 extraEnvVars:
-  - ENABLE_LOGIN_FORM: False
-  - ENABLE_PASSWORD_AUTH: False
+  ENABLE_LOGIN_FORM: False
+  ENABLE_PASSWORD_AUTH: False
