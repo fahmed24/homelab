@@ -6,9 +6,9 @@ ollama:
 ollamaUrls:
   - http://ollama.ollama-app.svc.cluster.local:11434
 sso:
+  enabled: true
+  enableSignup: false
   oidc:
-    enabled: true
-    enableSignup: true
     clientId: open-webui
     clientExistingSecret: open-webui-secrets
     clientExistingSecretKey: client-secret
