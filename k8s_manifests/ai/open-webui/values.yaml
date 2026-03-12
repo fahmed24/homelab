@@ -8,6 +8,7 @@ ollamaUrls:
 sso:
   oidc:
     enabled: true
+    enableSignup: true
     clientId: open-webui
     clientExistingSecret: open-webui-secrets
     clientExistingSecretKey: client-secret
