@@ -22,3 +22,4 @@ sso:
 extraEnvVars:
   ENABLE_LOGIN_FORM: False
   ENABLE_PASSWORD_AUTH: False
+  GLOBAL_LOG_LEVEL: DEBUG
