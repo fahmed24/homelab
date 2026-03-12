@@ -11,7 +11,7 @@ sso:
     clientId: open-webui
     clientExistingSecret: open-webui-secrets
     clientExistingSecretKey: client-secret
-    providerUrl: https://auth.fahmed.org/realms/master
+    providerUrl: "https://auth.fahmed.org/realms/master/.well-known/openid-configuration"
     providerName: "Keycloak"
     scopes: "openid email profile"
   roleManagement:
