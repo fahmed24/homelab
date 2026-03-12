@@ -5,3 +5,16 @@ ollama:
   enabled: false
 ollamaUrls:
   - http://ollama.ollama-app.svc.cluster.local:11434
+sso:
+  oidc:
+    enabled: true
+    clientId: open-webui
+    clientExistingSecret: open-webui-secrets
+    clientExistingSecretKey: client-secret
+    providerUrl: https://auth.fahmed.org/realms/master
+    providerName: "Keycloak"
+    scopes: "openid email profile"
+  roleManagement:
+    rolesClaim: "resource_access.open-webui.roles"
+    allowedRoles: "open-webui-user"
+    adminRoles: "open-webui-admin"
