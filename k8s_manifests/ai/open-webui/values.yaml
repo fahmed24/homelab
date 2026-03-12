@@ -19,3 +19,6 @@ sso:
     rolesClaim: "resource_access.open-webui.roles"
     allowedRoles: "open-webui-user"
     adminRoles: "open-webui-admin"
+extraEnvVars:
+  - ENABLE_LOGIN_FORM: False
+  - ENABLE_PASSWORD_AUTH: False
