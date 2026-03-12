@@ -9,6 +9,7 @@ sso:
   enabled: true
   enableSignup: true
   oidc:
+    enabled: true
     clientId: open-webui
     clientExistingSecret: open-webui-secrets
     clientExistingSecretKey: client-secret
