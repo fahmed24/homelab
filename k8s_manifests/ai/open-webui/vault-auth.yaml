@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: open-webui-sa
+  namespace: owu-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: open-webui-vault-auth
+  namespace: owu-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: open-webui-role
+    serviceAccount: open-webui-sa
+  method: kubernetes
+  mount: kubernetes
