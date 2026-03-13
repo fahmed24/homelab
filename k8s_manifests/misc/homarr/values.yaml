@@ -8,6 +8,9 @@ envSecrets:
   dbCredentials:
     existingSecret: homarr-secrets
     dbUrlKey: db-string
+  dbEncryption:
+    existingSecret: homarr-secrets
+    key: db-encryption
 persistence:
   homarrDatabase:
     enabled: false
