@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: homarr-app-sa
+  namespace: homarr-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: homarr-vault-auth
+  namespace: homarr-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: homarr-role
+    serviceAccount: homarr-app-sa
+  method: kubernetes
+  mount: kubernetes

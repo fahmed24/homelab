@@ -1,0 +1,13 @@
+image:
+  tag: v1.56.0
+env:
+  TZ: America/Los_Angeles
+database:
+  type: postgresql
+envSecrets:
+  dbCredentials:
+    existingSecret: homarr-secrets
+    dbUrlKey: db-string
+persistence:
+  homarrDatabase:
+    enabled: false
