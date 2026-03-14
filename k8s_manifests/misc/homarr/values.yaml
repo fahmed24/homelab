@@ -25,7 +25,7 @@ env:
   # -- Display name of provider (in login screen)
   AUTH_OIDC_CLIENT_NAME: Keycloak
   # -- Automatically redirect to OIDC login
-  AUTH_OIDC_AUTO_LOGIN: true
+  AUTH_OIDC_AUTO_LOGIN: false
   # -- Override the OIDC scopes
   AUTH_OIDC_SCOPE_OVERWRITE: "openid email profile groups"
   # -- Attribute used for groups (roles) claim
