@@ -18,7 +18,7 @@ persistence:
     enabled: true
 env:
   TZ: America/Los_Angeles
-  ADMIN_GROUP: homarr-admins
+  ADMIN_GROUP: "/homarr-admins"
   AUTH_PROVIDERS: oidc
   # -- Issuer URI of OIDC provider without trailing slash (/)
   AUTH_OIDC_ISSUER: https://auth.fahmed.org/realms/master
