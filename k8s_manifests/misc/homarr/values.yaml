@@ -15,7 +15,7 @@ envSecrets:
     key: db-encryption
 persistence:
   homarrDatabase:
-    enabled: true
+    enabled: false
 env:
   TZ: America/Los_Angeles
   ADMIN_GROUP: "/homarr-admins"
