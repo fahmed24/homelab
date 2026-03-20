@@ -37,7 +37,7 @@ jobs:
           # Update the image fields
           # Adjust the yq path to match your values.yaml structure
           # yq -i '.image.tag = strenv(TAG)' "$VALUES"
-          yq -i 'select(.kind == "Deployment").spec.template.spec.containers[0].image = "ghcr.io/fahmed24/vcard-personal-portfolio:strenv(TAG)"' "$VALUES"
+          yq -i 'select(.kind == "Deployment").spec.template.spec.containers[0].image = "ghcr.io/fahmed24/vcard-personal-portfolio:" + strenv(TAG)' "$VALUES"
 
           echo "Updated values.yaml:"
           cat "$VALUES"
