@@ -1,0 +1,52 @@
+# https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/#helm-value-files-from-external-git-repository
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: misc
+  namespace: argo-cd-app
+spec:
+  generators:
+  - list:
+      elements:
+      - app: linkding
+        url: https://rubxkube.github.io/charts
+        chartRevision: 1.1.20
+      - app: homarr
+        url: https://homarr-labs.github.io/charts/
+        chartRevision: 8.14.0
+  template:
+    metadata:
+      name: '{{app}}'
+    spec:
+      project: default
+      sources:
+      - repoURL: '{{url}}'
+        chart: '{{app}}'
+        targetRevision: '{{chartRevision}}'
+        helm:
+          valueFiles:
+          - '$values/k8s_manifests/misc/{{app}}/values.yaml'
+      - repoURL: https://github.com/fahmed24/homelab.git
+        targetRevision: dev
+        path: 'k8s_manifests/misc/{{app}}'
+        ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{app}}-app'
+      syncPolicy:
+        automated:
+          prune: true    # Delete resources no longer in git
+          selfHeal: true # Auto-sync if cluster state drifts from git
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 5          # Maximum number of sync attempts before giving up
+          backoff:
+            duration: 5s    # Wait 5 seconds before first retry
+            factor: 2       # Double the wait time after each retry (5s, 10s, 20s, 40s, 80s)
+            maxDuration: 3m # Cap the wait time at 3 minutes between retries
+      ignoreDifferences:
+      - group: "*"
+        kind: "*"
+        jqPathExpressions:
+        - '.metadata.annotations["argocd.argoproj.io/tracking-id"]'
