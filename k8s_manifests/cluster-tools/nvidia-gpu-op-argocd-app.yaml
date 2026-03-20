@@ -12,10 +12,10 @@ spec:
     targetRevision: v25.10.1
     helm:
       valueFiles:
-      - $values/k8s_manifests/nvidia-gpu-operator/values.yaml
+      - $values/k8s_manifests/cluster-tools/nvidia-gpu-operator/values.yaml
   - repoURL: https://github.com/fahmed24/homelab.git
     targetRevision: dev
-    path: k8s_manifests/nvidia-gpu-operator
+    path: k8s_manifests/cluster-tools/nvidia-gpu-operator
     ref: values
   destination:
     server: https://kubernetes.default.svc
