@@ -112,7 +112,7 @@ module "k3s_agent_medium_b1" {
   target_proxmox_node     = "proxmox2"
   vm_name                 = "K3S-AGENT-MB1"
   cpu_cores               = 2
-  memory                  = 4096
+  memory                  = 8192
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "50G"
   primary_storage_name    = "local-lvm"
@@ -139,7 +139,7 @@ module "k3s_agent_medium_b2" {
   bios                    = "ovmf"
   vm_state                = "stopped"
   cpu_cores               = 4
-  memory                  = 8192
+  memory                  = 16384
   cloud_init_storage_name = "local-lvm"
   primary_storage_size    = "60G"
   primary_storage_name    = "local-lvm"
