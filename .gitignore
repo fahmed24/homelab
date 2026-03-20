@@ -1,5 +1,5 @@
-terraform/.terraform
-terraform/credentials.auto.tfvars
-terraform/.terraform.lock.hcl
+**/.terraform*
+**/terraform.tfstate*
+credentials*
 **/.DS_Store
-packer/credentials.pkrvars.hcl
+**/vault-init-keys.json

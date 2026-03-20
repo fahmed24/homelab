@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations: {}
+  name: linkding
+  namespace: linkding-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`linkding.fahmed.org`)
+      middlewares: null
+      services:
+        - name: linkding
+          port: 9090
+  tls:
+    secretName: linkding-tls

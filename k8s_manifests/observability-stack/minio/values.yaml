@@ -1,0 +1,6 @@
+image:
+  tag: RELEASE.2025-10-15T17-29-55Z-hardened@sha256:8dc02a7e509336c8bbb67962086d691bdcde20a2c9327ed68e5081a681f6dbfc
+auth:
+  existingSecret: minio-secrets
+  existingSecretPasswordKey: password
+  existingSecretUserKey: username

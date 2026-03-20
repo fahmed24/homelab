@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: loki-sa
+  namespace: loki-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: loki-vault-auth
+  namespace: loki-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: minio-role
+    serviceAccount: loki-sa
+  method: kubernetes
+  mount: kubernetes

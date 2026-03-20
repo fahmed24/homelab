@@ -1,0 +1,11 @@
+---
+- name: Bootstrap LBs with ansible user
+  hosts: lbs
+  become: yes
+  vars:
+    ansible_user: ansible
+    ansible_ssh_common_args: '-o ProxyJump=bastion -o StrictHostKeyChecking=no'
+    ansible_pubkey_path: ~/.ssh/ansible.pub
+  roles:
+    - bootstrap_user
+    #- firewall

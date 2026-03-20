@@ -1,0 +1,7 @@
+---
+- name: Clean Shutdown All Proxmox VMs and Containers
+  shell: pvenode stopall
+
+- name: Shutdown Proxmox Node
+  shell: shutdown -h now
+

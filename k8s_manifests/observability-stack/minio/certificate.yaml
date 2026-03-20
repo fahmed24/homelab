@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: linkding-certificate
+  namespace: minio-app
+spec:
+  commonName: minio.fahmed.org
+  dnsNames:
+    - minio.fahmed.org
+    - minio-console.fahmed.org
+  duration: 2160h
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-cloudflare-prod
+  renewBefore: 720h
+  secretName: minio-tls

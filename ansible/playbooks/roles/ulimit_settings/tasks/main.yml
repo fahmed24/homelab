@@ -1,0 +1,10 @@
+- name: Increase inotify limits
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    sysctl_file: /etc/sysctl.d/99-inotify.conf
+    reload: yes
+  loop:
+    - { name: fs.inotify.max_user_watches,   value: "524288" }
+    - { name: fs.inotify.max_user_instances, value: "512" }

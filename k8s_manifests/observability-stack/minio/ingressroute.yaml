@@ -1,0 +1,22 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations: {}
+  name: minio
+  namespace: minio-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`minio-console.fahmed.org`)
+      services:
+        - name: minio
+          port: 9090
+    - kind: Rule
+      match: Host(`minio.fahmed.org`)
+      services:
+        - name: minio
+          port: 9000
+  tls:
+    secretName: minio-tls

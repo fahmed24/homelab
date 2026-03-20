@@ -1,0 +1,44 @@
+image:
+  tag: 12.4.0
+envValueFrom:
+  GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+    secretKeyRef:
+      name: grafana-secrets
+      key: client-secret
+admin:
+  existingSecret: grafana-secrets
+  userKey: user
+  passwordKey: password
+initChownData:
+  enabled: true
+persistence:
+  enabled: true
+grafana.ini:
+  auth.generic_oauth:
+    enabled: true
+    use_pkce: true
+    name: Keycloak-OAuth
+    allow_sign_up: true
+    client_id: grafana
+    email_attribute_path: email
+    login_attribute_path: username
+    name_attribute_path: full_name
+    auth_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/auth"
+    token_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/token"
+    api_url: "https://auth.fahmed.org/realms/master/protocol/openid-connect/userinfo"
+    scopes: "openid email profile offline_access roles"
+    role_attribute_path: "contains(resource_access.grafana.roles[*], 'admin') && 'Admin' || contains(resource_access.grafana.roles[*], 'editor') && 'Editor' || 'Viewer'"
+  paths:
+    data: /var/lib/grafana/
+    logs: /var/log/grafana
+    plugins: /var/lib/grafana/plugins
+    provisioning: /etc/grafana/provisioning
+  analytics:
+    check_for_updates: true
+  log:
+    mode: console
+  server:
+    root_url: "https://grafana.fahmed.org"
+    domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ tpl (.Values.ingress.hosts | first) . }}{{ else if (and .Values.route.main.enabled .Values.route.main.hostnames) }}{{ tpl (.Values.route.main.hostnames | first) . }}{{ else }}''{{ end }}"
+  unified_storage:
+    index_path: /var/lib/grafana-search/bleve

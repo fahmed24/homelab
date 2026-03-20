@@ -1,0 +1,19 @@
+---
+- name: Install and Configure Postgresql
+  hosts: database
+  vars:
+    ansible_user: ansible
+    postgres_password: nhs*sBM8ta4tN_2nBF2@
+    backup_dir: "/var/backups/postgresql"
+    backup_retention_days: 1
+
+  become: yes
+  roles:
+    - postgresql
+    #- firewall
+
+  handlers:
+    - name: restart postgresql
+      systemd:
+        name: postgresql
+        state: restarted

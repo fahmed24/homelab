@@ -1,14 +1,58 @@
+# K3S API Server
 frontend k3s-frontend
     bind *:6443
     mode tcp
     option tcplog
     default_backend k3s-backend
+    timeout client 50000
 
 backend k3s-backend
     mode tcp
     option tcp-check
     balance roundrobin
     default-server inter 10s downinter 5s
-    server server-1 10.10.10.50:6443 check
-    server server-2 10.10.10.51:6443 check
-    server server-3 10.10.10.52:6443 check
+    timeout connect 5000
+    timeout server 50000
+    server K3S-SERVER-A 192.168.100.5:6443 check
+    server K3S-SERVER-B 192.168.100.6:6443 check
+    server K3S-SERVER-C 192.168.100.7:6443 check
+
+# Application Traffic (HTTP)
+frontend k3s-apps-http
+    bind *:80
+    mode http
+    default_backend k3s-apps-backend
+    timeout client 50000
+
+backend k3s-apps-backend
+    mode http
+    balance roundrobin
+    timeout connect 5000
+    timeout server 50000
+    server K3S-AGENT-LA1 192.168.100.8:80 check
+    server K3S-AGENT-LA2 192.168.100.9:80 check
+    server K3S-AGENT-MA3 192.168.100.10:80 check
+    server K3S-AGENT-MA4 192.168.100.11:80 check
+    server K3S-AGENT-MB1 192.168.100.12:80 check
+    server K3S-AGENT-MB2 192.168.100.13:80 check
+    server K3S-AGENT-MC1 192.168.100.14:80 check
+
+# Application Traffic (HTTPS)
+frontend k3s-apps-https
+    bind *:443
+    mode tcp
+    default_backend k3s-apps-https-backend
+    timeout client 50000
+
+backend k3s-apps-https-backend
+    mode tcp
+    balance roundrobin
+    timeout connect 5000
+    timeout server 50000
+    server K3S-AGENT-LA1 192.168.100.8:443 check
+    server K3S-AGENT-LA2 192.168.100.9:443 check
+    server K3S-AGENT-MA3 192.168.100.10:443 check
+    server K3S-AGENT-MA4 192.168.100.11:443 check
+    server K3S-AGENT-MB1 192.168.100.12:443 check
+    server K3S-AGENT-MB2 192.168.100.13:443 check
+    server K3S-AGENT-MC1 192.168.100.14:443 check

@@ -1,0 +1,22 @@
+global:
+  domain: argocd.fahmed.org
+configs:
+  rbac:
+    policy.csv: |
+      g, /ArgoCDAdmins, role:admin
+      g, /ArgoCDViewers, role:readonly
+  cm:
+    admin.enabled: "false"
+    # clientSecret tip: $<some_K8S_secret>:dex.github.clientSecret
+    # argocd label must be attached, see argo-static-secret.yaml
+    oidc.config: |
+      name: Keycloak
+      issuer: https://auth.fahmed.org/realms/master
+      clientID: argocd
+      clientSecret: $argocd-oidc-secret:client-secret
+      refreshTokenThreshold: 15m
+      requestedScopes: ["openid", "profile", "email", "groups"]
+      enablePKCEAuthentication: true
+  params:
+    # Required for TLS termination at ingress
+    server.insecure: true

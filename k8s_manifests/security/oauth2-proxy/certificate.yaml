@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: oauth2-proxy-certificate
+  namespace: oauth2-proxy-app
+spec:
+  commonName: oauth2.fahmed.org
+  dnsNames:
+    - oauth2.fahmed.org
+    - public-oauth2.fahmed.org
+  duration: 2160h
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-cloudflare-prod
+  renewBefore: 720h
+  secretName: oauth2-tls

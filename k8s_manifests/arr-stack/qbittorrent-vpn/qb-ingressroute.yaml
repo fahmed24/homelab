@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: qb-ingressroute
+  namespace: qbittorrent-vpn-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`qb.fahmed.org`)
+      services:
+        - name: qbittorrent-vpn
+          port: 8080
+  tls:
+    secretName: qb-tls
+

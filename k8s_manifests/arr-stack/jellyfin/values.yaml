@@ -1,0 +1,31 @@
+images:
+  jellyfin:
+    tag: 10.8.13
+resources:
+  jellyfin:
+    requests:
+      cpu: 2
+      memory: 2Gi
+    limits:
+      cpu: 4
+      memory: 4Gi
+      nvidia.com/gpu: 1
+
+jellyfin:
+  #extraDevices:
+  #  - /dev/nvidia0
+  extraDevices:
+    - /dev/nvidia0
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+  mediaVolumes:
+    - name: cluster-storage
+      readOnly: false
+      volumeSpec:
+        accessModes:
+          - ReadWriteMany
+        capacity:
+          storage: 230Gi
+        nfs:
+          path: /export/cluster-storage/media
+          server: 192.168.68.57

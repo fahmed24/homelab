@@ -1,0 +1,27 @@
+common:
+  image:
+    tag: 1.45.0
+  variables:
+    secret:
+      existingSecret:
+        - name: linkding-secrets
+          key: username
+          envName: LD_DB_USER
+        - name: linkding-secrets
+          key: password
+          envName: LD_DB_PASSWORD
+        - name: oidc-client-secret
+          key: oidc-client-secret
+          envName: OIDC_RP_CLIENT_SECRET
+    nonSecret:
+      TZ: America/Los_Angeles
+      LD_DB_DATABASE: linkding
+      LD_DB_ENGINE: postgres
+      LD_DB_HOST: 192.168.200.2
+      LD_ENABLE_OIDC: "True"
+      OIDC_OP_AUTHORIZATION_ENDPOINT: https://auth.fahmed.org/realms/master/protocol/openid-connect/auth
+      OIDC_OP_TOKEN_ENDPOINT: https://auth.fahmed.org/realms/master/protocol/openid-connect/token
+      OIDC_OP_USER_ENDPOINT: https://auth.fahmed.org/realms/master/protocol/openid-connect/userinfo
+      OIDC_OP_JWKS_ENDPOINT: https://auth.fahmed.org/realms/master/protocol/openid-connect/certs
+      OIDC_RP_CLIENT_ID: linkding
+      LD_DISABLE_LOGIN_FORM: "True"

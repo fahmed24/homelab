@@ -1,0 +1,27 @@
+---
+- name: Setup K3S Servers
+  hosts: k3s_servers
+  vars:
+    ansible_user: ansible
+    server_group: k3s_servers # noqa var-naming[no-role-prefix]
+    k3s_version: v1.34.1+k3s1
+    api_endpoint: 192.168.100.5
+    tls_san: 192.168.100.4
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+  become: yes
+  roles:
+    - k3s_server
+    #- firewall
+
+- name: Setup K3S Agents
+  hosts: k3s_agents
+  vars:
+    ansible_user: ansible
+    server_group: k3s_servers # noqa var-naming[no-role-prefix]
+    k3s_version: v1.34.1+k3s1
+    api_endpoint: 192.168.100.4
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+  become: yes
+  roles:
+    - k3s_agent
+    #- firewall

@@ -1,0 +1,26 @@
+image:
+  tag: 0.8.8
+namespaceOverride: owu-app
+ollama:
+  enabled: false
+ollamaUrls:
+  - http://ollama.ollama-app.svc.cluster.local:11434
+sso:
+  enabled: true
+  enableSignup: true
+  oidc:
+    enabled: true
+    clientId: open-webui
+    clientExistingSecret: open-webui-secrets
+    clientExistingSecretKey: client-secret
+    providerUrl: "https://auth.fahmed.org/realms/master/.well-known/openid-configuration"
+    providerName: "Keycloak"
+    scopes: "openid email profile"
+  roleManagement:
+    rolesClaim: "resource_access.open-webui.roles"
+    allowedRoles: "open-webui-user"
+    adminRoles: "open-webui-admin"
+extraEnvVars:
+  ENABLE_LOGIN_FORM: False
+  ENABLE_PASSWORD_AUTH: False
+  OAUTH_CODE_CHALLENGE_METHOD: S256

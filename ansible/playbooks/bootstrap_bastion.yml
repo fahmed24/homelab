@@ -1,6 +1,8 @@
 ---
 - name: Bootstrap Bastion host with ansible user
   hosts: bastion
+  vars:
+    ansible_pubkey_path: ~/.ssh/ansible.pub
   become: yes
   roles:
     - bootstrap_user

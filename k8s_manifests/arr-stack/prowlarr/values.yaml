@@ -1,0 +1,7 @@
+image:
+  tag: 2.3.2.5245
+env:
+  TZ: America/Los_Angeles
+persistence:
+  config:
+    enabled: true

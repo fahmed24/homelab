@@ -1,0 +1,33 @@
+tempo:
+  tag: 2.10.1
+  extraEnv:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        key: username
+        name: tempo-secrets
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        key: password
+        name: tempo-secrets
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: http://prometheus-server.prometheus-app.svc.cluster.local
+  overrides:
+    defaults:
+      metrics_generator:
+        processors:
+        - service-graphs
+        - span-metrics
+        - local-blocks
+  storage:
+    trace:
+      backend: s3
+      s3:
+        bucket: tempo-storage
+        endpoint: minio.minio-app.svc.cluster.local:9000
+        insecure: true
+        region: us-east-1
+persistence:
+  enabled: true

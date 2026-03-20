@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations: {}
+  name: argocd-sa
+  namespace: argo-cd-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations: {}
+  name: argocd-vault-auth
+  namespace: argo-cd-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: argocd-role
+    serviceAccount: argocd-sa
+  method: kubernetes
+  mount: kubernetes

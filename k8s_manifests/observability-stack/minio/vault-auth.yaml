@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: minio-sa
+  namespace: minio-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: minio-vault-auth
+  namespace: minio-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: minio-role
+    serviceAccount: minio-sa
+  method: kubernetes
+  mount: kubernetes

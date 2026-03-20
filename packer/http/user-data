@@ -14,10 +14,11 @@ autoinstall:
   ssh:
     install-server: yes
     authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbcblSecHjRJmXa/KbHzjjtfCDrqxSCZF/h2C3H4hkP ansible@control
+      - ADD-PUBLIC-SSH-KEY
     allow-pw: false
   user-data:
     disable_root: true
+    preserve_hostname: false
   packages:
     - qemu-guest-agent
   late-commands:

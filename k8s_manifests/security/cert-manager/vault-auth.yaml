@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: cert-manager-sa
+  namespace: cert-manager
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: cert-manager-vault-auth
+  namespace: cert-manager
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: cloudflare-role
+    serviceAccount: cert-manager-sa
+  method: kubernetes
+  mount: kubernetes
