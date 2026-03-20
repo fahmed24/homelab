@@ -25,9 +25,9 @@ jobs:
 
       - name: Update values.yaml
         run: |
-          IMAGE="${{ github.event.client_payload.image }}"
-          TAG="${{ github.event.client_payload.tag }}"
-          DIGEST="${{ github.event.client_payload.digest }}"
+          export TAG="${{ github.event.client_payload.tag }}"
+          export IMAGE="${{ github.event.client_payload.image }}"
+          export DIGEST="${{ github.event.client_payload.digest }}"
 
           echo "Updating image to: ${IMAGE}:${TAG}"
 
@@ -36,7 +36,7 @@ jobs:
 
           # Update the image fields
           # Adjust the yq path to match your values.yaml structure
-          yq -i ".image.tag = $TAG" "$VALUES"
+          yq -i '.image.tag = strenv(TAG)' "$VALUES"
 
           echo "Updated values.yaml:"
           cat "$VALUES"
