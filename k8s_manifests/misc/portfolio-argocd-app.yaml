@@ -8,7 +8,7 @@ spec:
   project: default
   sources:
   - repoURL: https://github.com/fahmed24/homelab.git
-    targetRevision: dev
+    targetRevision: main
     path: k8s_manifests/misc/portfolio
   destination:
     server: https://kubernetes.default.svc
