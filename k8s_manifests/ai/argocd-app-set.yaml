@@ -11,9 +11,11 @@ spec:
       - app: ollama
         url: https://helm.otwld.com/
         chartRevision: 1.48.0
-      - app: open-web-ui
+        namespace: ollama-app
+      - app: open-webui
         url: https://helm.openwebui.com/
         chartRevision: 12.8.1
+        namespace: owu-app
   template:
     metadata:
       name: '{{app}}'
@@ -32,7 +34,7 @@ spec:
         ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{app}}-app'
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           prune: true    # Delete resources no longer in git
