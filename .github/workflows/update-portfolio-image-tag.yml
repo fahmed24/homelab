@@ -39,7 +39,7 @@ jobs:
           yq -i '.image.tag = strenv(TAG)' "$VALUES"
 
           echo "Updated values.yaml:"
-          cat values.yaml
+          cat "$VALUES"
 
       - name: Commit and push changes
         run: |
