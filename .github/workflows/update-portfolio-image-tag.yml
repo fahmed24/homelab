@@ -36,7 +36,7 @@ jobs:
 
           # Update the image fields
           # Adjust the yq path to match your values.yaml structure
-          yq -i '.image.tag = strenv(TAG)' "$VALUES"
+          yq -i ".image.tag = $TAG" "$VALUES"
 
           echo "Updated values.yaml:"
           cat "$VALUES"
