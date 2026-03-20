@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - env:
-          image:
+          image: ghcr.io/fahmed24/vcard-personal-portfolio:strenv(TAG)
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 2
