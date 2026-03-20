@@ -1,0 +1,58 @@
+# .github/workflows/update-image-tag.yml
+# K8s Manifest Repo Workflow
+# Listens for repository_dispatch from the app repo,
+# updates the image tag in values.yaml, and commits the change.
+
+name: Update Image Tag
+
+on:
+  repository_dispatch:
+    types: [image-update]
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout manifest repo
+        uses: actions/checkout@v4
+
+      - name: Install yq
+        uses: mikefarah/yq@master
+
+      - name: Update values.yaml
+        run: |
+          IMAGE="${{ github.event.client_payload.image }}"
+          TAG="${{ github.event.client_payload.tag }}"
+          DIGEST="${{ github.event.client_payload.digest }}"
+
+          echo "Updating image to: ${IMAGE}:${TAG}"
+
+          # UPDATE ME FOR FUTURE APPS
+          VALUES="./k8s_manifests/misc/portfolio/values.yaml"
+
+          # Update the image fields
+          # Adjust the yq path to match your values.yaml structure
+          yq -i '.image.tag = strenv(TAG)' "$VALUES"
+
+          echo "Updated values.yaml:"
+          cat values.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add values.yaml
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+
+          RELEASE="${{ github.event.client_payload.release }}"
+          REPO="${{ github.event.client_payload.repo }}"
+
+          git commit -m "chore: update image tag to ${RELEASE}" \
+                     -m "Source: ${REPO}" \
+                     -m "Triggered by release ${RELEASE}"
+          git push
