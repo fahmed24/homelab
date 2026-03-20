@@ -14,7 +14,7 @@ configs:
       issuer: https://auth.fahmed.org/realms/master
       clientID: argocd
       clientSecret: $argocd-oidc-secret:client-secret
-      refreshTokenThreshold: 2m
+      refreshTokenThreshold: 15m
       requestedScopes: ["openid", "profile", "email", "groups"]
       enablePKCEAuthentication: true
   params:
