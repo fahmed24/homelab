@@ -67,7 +67,7 @@ resource "proxmox_lxc" "bastion" {
   network {
     name   = "eth0"
     bridge = "vmbr1"
-    ip     = "192.168.1.2/24"
+    ip     = "192.168.1.8/24"
     gw     = "192.168.1.1"
   }
 
