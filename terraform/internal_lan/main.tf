@@ -192,3 +192,35 @@ resource "proxmox_lxc" "ha_proxy_b" {
   */
 }
 
+resource "proxmox_lxc" "pihole" {
+  provider = proxmox.proxmox3
+
+  target_node  = "proxmox3"
+  hostname     = "PIHOLE"
+  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  password     = var.container_root_password
+  unprivileged = true
+
+  cores    = 1
+  cpulimit = 50  # Uses 50% of 1 Core
+  memory   = 512 # In MB
+  swap     = 128
+  onboot   = true
+  start    = true
+
+  ssh_public_keys = var.pm_ssh_public_keys
+
+  // Terraform will crash without rootfs defined
+  rootfs {
+    storage = "local-lvm"
+    size    = "4G" # Use G for Gigabytes
+  }
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr0"
+    ip     = "192.168.1.2/24"
+    gw     = "192.168.1.1"
+  }
+}
+
