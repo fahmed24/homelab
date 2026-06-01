@@ -28,4 +28,4 @@ jellyfin:
           storage: 230Gi
         nfs:
           path: /export/cluster-storage/media
-          server: 192.168.68.57
+          server: 192.168.1.11
