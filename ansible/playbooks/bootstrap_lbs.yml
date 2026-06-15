@@ -3,8 +3,7 @@
   hosts: lbs
   become: yes
   vars:
-    ansible_user: ansible
-    ansible_ssh_common_args: '-o ProxyJump=bastion -o StrictHostKeyChecking=no'
+    ansible_user: root
     ansible_pubkey_path: ~/.ssh/ansible.pub
   roles:
     - bootstrap_user
