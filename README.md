@@ -2,7 +2,19 @@
 
 A fully self-hosted, production-grade home lab running on bare-metal Proxmox nodes. Infrastructure is provisioned as code and services are deployed via GitOps — no manual configuration.
 
+This repo is the single source of truth for a complete DevOps stack: from bare-metal VM provisioning through to TLS-secured, SSO-protected applications with full observability — all automated.
+
 ![Home Lab Architecture](./Home-Lab.drawio.png)
+
+---
+
+## Live & In Production
+
+This isn't a demo or a sandbox — it's a real, running environment.
+
+My personal portfolio at **[fahmed.org](https://fahmed.org)** is deployed and served from this exact infrastructure. It goes through the full GitOps pipeline: code push → GitHub Actions → ArgoCD → k3s cluster → Traefik ingress → cert-manager TLS — the same pipeline that manages every other service in this repo.
+
+**[Visit fahmed.org](https://fahmed.org)** to see the end result, or keep reading to understand how it's built.
 
 ---
 
