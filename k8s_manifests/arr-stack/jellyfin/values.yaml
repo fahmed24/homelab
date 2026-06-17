@@ -4,11 +4,11 @@ images:
 resources:
   jellyfin:
     requests:
-      cpu: 2
+      cpu: 1
       memory: 2Gi
     limits:
-      cpu: 4
-      memory: 4Gi
+      cpu: 2
+      memory: 2Gi
       nvidia.com/gpu: 1
 
 jellyfin:
@@ -28,4 +28,4 @@ jellyfin:
           storage: 230Gi
         nfs:
           path: /export/cluster-storage/media
-          server: 192.168.68.57
+          server: 192.168.1.11

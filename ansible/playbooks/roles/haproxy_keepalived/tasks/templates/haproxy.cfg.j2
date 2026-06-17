@@ -41,7 +41,14 @@ backend k3s-apps-backend
 frontend k3s-apps-https
     bind *:443
     mode tcp
-    default_backend k3s-apps-https-backend
+    #-- Allowlist approach; only permit known public subdomains and allow anything if src is LAN
+    tcp-request inspect-delay 5s
+    tcp-request content accept if { req.ssl_hello_type 1 }
+    acl is_public req.ssl_sni -i auth.fahmed.org linkding.fahmed.org
+    acl is_private src 192.168.1.1/24
+    tcp-request content reject if !is_public !is_private
+    use_backend k3s-apps-https-backend if is_public or is_private
+    #-- Allowlist approach; only permit known public subdomains
     timeout client 50000
 
 backend k3s-apps-https-backend

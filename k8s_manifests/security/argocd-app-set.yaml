@@ -64,7 +64,9 @@ spec:
         kind: "*"
         jqPathExpressions:
         - '.metadata.annotations["argocd.argoproj.io/tracking-id"]'
-      - group: ""
+      - group: "*"
         kind: Secret
         name: keycloak
         namespace: keycloak-app
+        jsonPointers:
+          - /data

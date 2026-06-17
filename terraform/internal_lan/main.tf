@@ -67,7 +67,7 @@ resource "proxmox_lxc" "bastion" {
   network {
     name   = "eth0"
     bridge = "vmbr1"
-    ip     = "192.168.1.2/24"
+    ip     = "192.168.1.8/24"
     gw     = "192.168.1.1"
   }
 
@@ -92,19 +92,21 @@ resource "proxmox_lxc" "bastion" {
 
 resource "proxmox_lxc" "ha_proxy_a" {
 
-  provider     = proxmox
-  target_node  = "proxmox1"
-  hostname     = "HAPROXY-A"
-  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  provider    = proxmox
+  target_node = "proxmox1"
+  hostname    = "HAPROXY-A"
+  ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+  # Execute as admin in Proxmox, make sure vmid matches and script is executable
+  # pct set 100 -hookscript local:snippets/alpine-lxc-hookscript.sh
   password     = var.container_root_password
   unprivileged = true
 
-  cores    = 1  # Logical cores, e.g. 16 Threads of 8 Physical
-  cpulimit = 25 # Uses 50% of 1 Core
-  memory   = 256
-  swap     = 256
-  onboot   = true
-  start    = true
+  cores = 1 # Logical cores, e.g. 16 Threads of 8 Physical
+  #cpulimit = 50 # Uses 50% of 1 Core
+  memory = 1024
+  swap   = 512
+  onboot = true
+  start  = true
 
   ssh_public_keys = var.pm_ssh_public_keys
 
@@ -116,10 +118,10 @@ resource "proxmox_lxc" "ha_proxy_a" {
 
   network {
     name   = "eth0"
-    bridge = "vmbr1"
-    ip     = "192.168.100.2/24"
-    gw     = "192.168.100.1"
-    tag    = "100" #VLAN Tag
+    bridge = "vmbr0"
+    ip     = "192.168.50.2/24"
+    gw     = "192.168.50.1"
+    tag    = "50" #VLAN Tag
   }
 
   /* DHCP Config on LAN
@@ -146,16 +148,16 @@ resource "proxmox_lxc" "ha_proxy_b" {
 
   target_node  = "proxmox3"
   hostname     = "HAPROXY-B"
-  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  ostemplate   = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
   password     = var.container_root_password
   unprivileged = true
 
-  cores    = 1  # Logical cores, e.g. 16 Threads of 8 Physical
-  cpulimit = 25 # Uses 50% of 1 Core
-  memory   = 256
-  swap     = 256
-  onboot   = true
-  start    = true
+  cores = 1 # Logical cores, e.g. 16 Threads of 8 Physical
+  #cpulimit = 25 # Uses 50% of 1 Core
+  memory = 1024
+  swap   = 512
+  onboot = true
+  start  = true
 
   ssh_public_keys = var.pm_ssh_public_keys
 
@@ -167,10 +169,10 @@ resource "proxmox_lxc" "ha_proxy_b" {
 
   network {
     name   = "eth0"
-    bridge = "vmbr1"
-    ip     = "192.168.100.3/24"
-    gw     = "192.168.100.1"
-    tag    = "100" #VLAN Tag
+    bridge = "vmbr0"
+    ip     = "192.168.50.3/24"
+    gw     = "192.168.50.1"
+    tag    = "50" #VLAN Tag
   }
 
   /* DHCP Config on LAN
@@ -190,5 +192,37 @@ resource "proxmox_lxc" "ha_proxy_b" {
     gw     = "192.168.1.1"
   }
   */
+}
+
+resource "proxmox_lxc" "pihole" {
+  provider = proxmox.proxmox3
+
+  target_node  = "proxmox3"
+  hostname     = "PIHOLE"
+  ostemplate   = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+  password     = var.container_root_password
+  unprivileged = true
+
+  cores    = 1
+  cpulimit = 50  # Uses 50% of 1 Core
+  memory   = 512 # In MB
+  swap     = 128
+  onboot   = true
+  start    = true
+
+  ssh_public_keys = var.pm_ssh_public_keys
+
+  // Terraform will crash without rootfs defined
+  rootfs {
+    storage = "local-lvm"
+    size    = "4G" # Use G for Gigabytes
+  }
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr0"
+    ip     = "192.168.1.2/24"
+    gw     = "192.168.1.1"
+  }
 }
 

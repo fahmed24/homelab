@@ -1,0 +1,10 @@
+---
+- name: Bootstrap Pihole host with ansible user
+  hosts: pihole
+  vars:
+    ansible_user: root
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_pubkey_path: ~/.ssh/ansible.pub
+  become: yes
+  roles:
+    - bootstrap_user

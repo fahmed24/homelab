@@ -1,8 +1,18 @@
----
+- name: Install software-properties-common
+  apt:
+    name: software-properties-common
+    state: present
+    update_cache: yes
+
+- name: Add HAProxy PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:vbernat/haproxy-3.2
+    state: present
+
 - name: Install HAProxy and Keepalived
   apt:
     name:
-      - haproxy
+      - haproxy=3.2.*
       - keepalived
     state: present
     update_cache: yes
