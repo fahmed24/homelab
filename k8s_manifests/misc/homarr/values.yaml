@@ -1,5 +1,5 @@
 image:
-  tag: v1.56.0
+  tag: v1.60.0
 database:
   type: postgresql
 envSecrets:
