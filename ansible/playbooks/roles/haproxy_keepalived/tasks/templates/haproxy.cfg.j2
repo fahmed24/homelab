@@ -44,7 +44,7 @@ frontend k3s-apps-https
     #-- Allowlist approach; only permit known public subdomains and allow anything if src is LAN
     tcp-request inspect-delay 5s
     tcp-request content accept if { req.ssl_hello_type 1 }
-    acl is_public req.ssl_sni -i auth.fahmed.org linkding.fahmed.org
+    acl is_public req.ssl_sni -i fahmed.org auth.fahmed.org apps.fahmed.org argocd.fahmed.org grafana.fahmed.org ai.fahmed.org linkding.fahmed.org jellyfin.fahmed.org
     acl is_private src 192.168.1.1/24
     tcp-request content reject if !is_public !is_private
     use_backend k3s-apps-https-backend if is_public or is_private
