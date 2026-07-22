@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - env:
-          image: ghcr.io/fahmed24/vcard-personal-portfolio:v1.0.3
+          image: ghcr.io/fahmed24/vcard-personal-portfolio:v1.0.4
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 2
