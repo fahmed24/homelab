@@ -10,7 +10,7 @@ spec:
       elements:
       - app: flaresolverr
         url: oci://ghcr.io/m0nsterrr/helm-charts/flaresolverr
-        chartRevision: 2.2.0
+        chartRevision: 2.4.0
       - app: jellyfin
         url: https://beluga-cloud.github.io/charts
         chartRevision: 2.3.0
