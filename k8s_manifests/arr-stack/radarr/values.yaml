@@ -1,5 +1,5 @@
 image:
-  tag: 6.1.1.10317
+  tag: 6.4.0.10523
 env:
   TZ: America/Los_Angeles
 persistence:

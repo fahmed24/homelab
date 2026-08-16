@@ -19,7 +19,7 @@ spec:
         chartRevision: 1.50.1
       - app: radarr
         url: https://charts.pree.dev
-        chartRevision: 1.26.0
+        chartRevision: 1.30.0
       - app: qbittorrent-vpn
         url: https://bdclark.github.io/helm-charts
         chartRevision: 0.7.6
