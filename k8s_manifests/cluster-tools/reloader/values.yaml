@@ -7,5 +7,6 @@ image:
 
 reloader:
   watchGlobally: false
-  namespaces: ("vault-app")
+  namespaces:
+    - vault-app
 
