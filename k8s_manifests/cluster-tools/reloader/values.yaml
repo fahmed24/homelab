@@ -6,4 +6,6 @@ image:
   pullPolicy: IfNotPresent
 
 reloader:
+  watchGlobally: false
   namespaces: ("vault-app")
+
