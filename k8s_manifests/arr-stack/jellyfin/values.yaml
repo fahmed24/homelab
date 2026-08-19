@@ -4,10 +4,10 @@ images:
 resources:
   jellyfin:
     requests:
-      cpu: 1
+      cpu: 2
       memory: 2Gi
     limits:
-      cpu: 2
+      cpu: 4
       memory: 4Gi
       nvidia.com/gpu: 1
 
