@@ -6,10 +6,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "-3"
 spec:
   capacity:
-    storage: 230Gi
+    storage: 18000Gi
   accessModes:
     - ReadWriteMany
   nfs:
     server: 192.168.1.11
-    path: /export/cluster-storage
+    path: /export/media-share
 

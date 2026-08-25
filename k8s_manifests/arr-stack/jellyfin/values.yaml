@@ -4,11 +4,11 @@ images:
 resources:
   jellyfin:
     requests:
-      cpu: 1
-      memory: 2Gi
-    limits:
       cpu: 2
       memory: 2Gi
+    limits:
+      cpu: 4
+      memory: 4Gi
       nvidia.com/gpu: 1
 
 jellyfin:
@@ -19,13 +19,13 @@ jellyfin:
     - /dev/nvidiactl
     - /dev/nvidia-uvm
   mediaVolumes:
-    - name: cluster-storage
+    - name: media-share
       readOnly: false
       volumeSpec:
         accessModes:
           - ReadWriteMany
         capacity:
-          storage: 230Gi
+          storage: 18000Gi
         nfs:
-          path: /export/cluster-storage/media
+          path: /export/media-share/media
           server: 192.168.1.11

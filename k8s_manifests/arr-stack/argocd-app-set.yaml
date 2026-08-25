@@ -10,7 +10,7 @@ spec:
       elements:
       - app: flaresolverr
         url: oci://ghcr.io/m0nsterrr/helm-charts/flaresolverr
-        chartRevision: 2.2.0
+        chartRevision: 2.4.0
       - app: jellyfin
         url: https://beluga-cloud.github.io/charts
         chartRevision: 2.3.0
@@ -19,10 +19,10 @@ spec:
         chartRevision: 1.50.1
       - app: radarr
         url: https://charts.pree.dev
-        chartRevision: 1.26.0
+        chartRevision: 1.30.0
       - app: qbittorrent-vpn
         url: https://bdclark.github.io/helm-charts
-        chartRevision: 0.7.2
+        chartRevision: 0.7.6
       - app: sonarr
         url: https://charts.pree.dev
         chartRevision: 1.12.1

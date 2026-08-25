@@ -1,6 +1,6 @@
 qbittorrent:
   image:
-    tag: 5.1.4
+    tag: 5.2.3
   env:
     TZ: America/Los_Angeles
   persistence:
@@ -13,7 +13,7 @@ qbittorrent:
 
 gluetun:
   image:
-    tag: v3.41.1
+    tag: v3.41.3
   env:
     TZ: America/Los_Angeles
     VPN_SERVICE_PROVIDER: nordvpn
