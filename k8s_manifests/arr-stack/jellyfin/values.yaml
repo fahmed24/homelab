@@ -1,6 +1,6 @@
 images:
   jellyfin:
-    tag: 10.8.13
+    tag: 10.11.11
 resources:
   jellyfin:
     requests:
