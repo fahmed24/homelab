@@ -1,0 +1,48 @@
+image:
+  # -- image repository
+  repository: ghcr.io/miniflux/miniflux
+  # -- image tag
+  tag: 2.2.5
+
+# -- environment variables. [[ref]](https://miniflux.app/docs/configuration.html)
+# @default -- See [values.yaml](./values.yaml)
+env:
+  # -- Postgresql connection parameters. Will be generated if Postgresql subchart is enabled. [[ref]](https://miniflux.app/docs/configuration.html#database-url)
+  DATABASE_URL: ""
+  # -- Set to `1` to create an admin user from environment variables.
+  CREATE_ADMIN: "1"
+  # -- Admin user login, it's used only if `CREATE_ADMIN` is enabled.
+  ADMIN_USERNAME: admin
+  # -- Admin user password, it's used only if `CREATE_ADMIN` is enabled.
+  ADMIN_PASSWORD:
+    secretKeyRef:
+      name: miniflux-secrets
+      key: admin-password
+
+  DATABASE_URL:
+    secretKeyRef:
+      name: miniflux-secrets
+      key: database-url
+
+service:
+  # -- Configures service settings for the chart.
+  # @default -- See [values.yaml](./values.yaml)
+  main:
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  main:
+    enabled: false
+    # hosts:
+    #   - host: chart-example.local
+    #     paths:
+    #       - path: /
+    # tls:
+    #   - secretName: chart-example.local-tls
+    #     hosts:
+    #       - chart-example.local
+
+postgresql:
+  enabled: false

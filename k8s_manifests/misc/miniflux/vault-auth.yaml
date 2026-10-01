@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: miniflux-app-sa
+  namespace: miniflux-app
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: miniflux-auth
+  namespace: miniflux-app
+spec:
+  kubernetes:
+    audiences:
+      - vault
+    role: miniflux-role
+    serviceAccount: miniflux-app-sa
+  method: kubernetes
+  mount: kubernetes
