@@ -32,7 +32,7 @@ env:
       key: client-secret
   OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.fahmed.org/realms/master
   OAUTH2_PROVIDER: oidc
-  OAUTH2_REDIRECT_URL: https://miniflux.fahmed.org/oauth2/oidc/callback
+  OAUTH2_REDIRECT_URL: https://miniflux.fahmed.org/oidc/callback
 
 
 
