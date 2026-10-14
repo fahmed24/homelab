@@ -24,6 +24,19 @@ env:
       name: miniflux-secrets
       key: database-url
 
+  # OIDC Configuration
+  OAUTH2_CLIENT_ID: miniflux
+  OAUTH2_CLIENT_SECRET:
+    secretKeyRef:
+      name: miniflux-secrets
+      key: client-secret
+  OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.fahmed.org/realms/master
+  OAUTH2_PROVIDER: oidc
+  OAUTH2_REDIRECT_URL: https://miniflux.fahmed.org/oauth2/oidc/callback
+
+
+
+
 service:
   # -- Configures service settings for the chart.
   # @default -- See [values.yaml](./values.yaml)

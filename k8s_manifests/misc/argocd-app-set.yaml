@@ -15,7 +15,7 @@ spec:
         url: https://homarr-labs.github.io/charts/
         chartRevision: 8.14.0
       - app: miniflux
-        url: https://charts.gabe565.com/charts/
+        url: https://charts.gabe565.com
         chartRevision: 0.9.2
   template:
     metadata:
