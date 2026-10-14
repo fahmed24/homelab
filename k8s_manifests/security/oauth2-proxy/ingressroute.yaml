@@ -10,7 +10,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`oauth2.fahmed.org`) || PathPrefix(`/oauth2/`)
+      match: Host(`oauth2.fahmed.org`)
       middlewares:
         - name: auth-headers
           namespace: oauth2-proxy-app
