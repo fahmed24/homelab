@@ -34,7 +34,7 @@ env:
   OAUTH2_PROVIDER: oidc
   OAUTH2_REDIRECT_URL: https://miniflux.fahmed.org/oauth2/oidc/callback
   DISABLE_LOCAL_AUTH: true
-  OAUTH2_USER_CREATION: false
+  OAUTH2_USER_CREATION: true
 
 service:
   # -- Configures service settings for the chart.
